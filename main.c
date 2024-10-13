@@ -1,4 +1,3 @@
-//as funções principais que foram feitas, ficam no arquivo funcoes.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +5,8 @@
 #include <windows.h>
 #include <conio.h>
 #include <ctype.h>
+
+//as funções principais que foram feitas, ficam no arquivo funcoes.c
 #include "interface.c"
 #include "funcoes.c"
 #include "estilos.c"
