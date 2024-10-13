@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1727819776 source:c:\users\zukki\downloads\pim\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<windows.h>
+	<conio.h>
+	<ctype.h>
+	"interface.c"
+	"funcoes.c"
+	"estilos.c"
+
+1727830281 c:\users\zukki\downloads\pim\interface.c
+	"interface.h"
+	"structs.h"
+	"funcoes.h"
+	"estilos.h"
+
+1727818694 c:\users\zukki\downloads\pim\interface.h
+
+1727819585 c:\users\zukki\downloads\pim\structs.h
+
+1727818774 c:\users\zukki\downloads\pim\funcoes.h
+
+1727819125 c:\users\zukki\downloads\pim\estilos.h
+
+1727818787 c:\users\zukki\downloads\pim\funcoes.c
+	"funcoes.h"
+
+1727827620 c:\users\zukki\downloads\pim\estilos.c
+	"estilos.h"
+
