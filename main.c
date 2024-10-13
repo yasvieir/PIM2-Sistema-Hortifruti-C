@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string.h> //Para trabalhar com strings.
 #include <locale.h> //Permite que o código entenda caracteres especiais.
-#include <windows.h>
-#include <conio.h>
-#include <ctype.h>
+#include <windows.h> //Uso de funções do sistema.
+#include <conio.h> //Para personalizar as definições de cores.
+#include <ctype.h> //Uso de funções para classificar e modificar caracteres.
 
-//as funções principais que foram feitas, ficam no arquivo funcoes.c
+//As funções principais que foram feitas, ficam no arquivo funcoes.c
 #include "interface.c"
 #include "funcoes.c"
 #include "estilos.c"
