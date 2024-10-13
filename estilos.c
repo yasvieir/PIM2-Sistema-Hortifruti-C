@@ -23,7 +23,7 @@ void animacao_de_carregamento(){
     for(i = 0; i < 100; i++){
         printf("\rCarregando... %c", animacao[i % 4]);
         fflush(stdout);
-        usleep(10000); // pausa de 50 milissegundos
+        usleep(30000); // pausa de 50 milissegundos
     }
     printf("\n");
 }

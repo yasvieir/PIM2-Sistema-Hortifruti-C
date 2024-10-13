@@ -136,46 +136,68 @@ void telaMenuAdmin(){
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    char escolha;
+    int escolha;
 
-    //do{
-    while (escolha == NULL) {
+    do{
         printf("\n\n\n\n\n\n\n"
-               "\n                                          ");
+               "\n                                        ");
         SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
-        printf(                                            "                                 ");
+        printf(                                           "                                    ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                              "                                            \n"
-                 "                                          ");
+        printf(                                                                                "                                        \n"
+                 "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-        printf(                                            "              MENU               ");
+        printf(                                           "              MENU                  ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                              "                                            \n"
-                 "                                          ");
+        printf(                                                                                "                                        \n"
+                 "                                        ");
         SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
-        printf(                                            "                                 ");
+        printf(                                           "                                    ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                              "                                            \n"
-                 "                                          |                               |                                             \n"
-                 "                                          |   [1] - Tela do Gerente       |                                             \n"
-                 "                                          |   [2] - Tela do Funcionário   |                                             \n"
-                 "                                          |   [0] - Sair                  |                                             \n"
-                 "                                          |                               |                                             \n"
-                 "                                          #===============================#                                             \n"
-               "\n                                         Escolha uma opção para continuar: ");
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [1] - Tela do Gerente           ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [2] - Tela do Funcionário       ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [0] - Sair                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           " Escolha uma opção para continuar: ");
 
-        scanf("%c", &escolha);
+        scanf("%i", &escolha);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
 
         switch(escolha){
-        case '1':
+        case 1:
             telaLimpa();
             telaGerente();
             break;
-        case '2':
+        case 2:
             telaLimpa();
             telaFuncionario();
             break;
-        case '0':
+        case 0:
             telaLimpa();
             SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
             animacao_de_saida();
@@ -187,13 +209,10 @@ void telaMenuAdmin(){
         default :
             printf("\n\n\t\t\t\t\t\t [!} Opção Inválida!");
             Sleep(800);
-            //escolha='3';
-            printf("%c", escolha);
         }
         telaLimpa();
-    }
-    }while(escolha != '3');
-    //telaLimpa();
+    }while(escolha != 3);
+    telaLimpa();
 }
 
 void telaGerente(){
@@ -339,7 +358,8 @@ void telaSaida(){
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
         printf(                                           " Escolha uma opção para continuar: ");
 
-        scanf("%d", &escolha);
+        scanf("%i", &escolha);
+        fflush(stdin);
         SetConsoleTextAttribute(hConsole, saved_attributes);
 
         switch(escolha){

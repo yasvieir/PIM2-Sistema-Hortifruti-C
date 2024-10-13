@@ -31,3 +31,35 @@
 1727827620 c:\users\zukki\downloads\pim\estilos.c
 	"estilos.h"
 
+1728794110 source:c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<windows.h>
+	<conio.h>
+	<ctype.h>
+	"interface.c"
+	"funcoes.c"
+	"estilos.c"
+
+1728849727 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
+	"interface.h"
+	"structs.h"
+	"funcoes.h"
+	"estilos.h"
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.h
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\structs.h
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.h
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estilos.h
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.c
+	"funcoes.h"
+
+1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estilos.c
+	"estilos.h"
+
