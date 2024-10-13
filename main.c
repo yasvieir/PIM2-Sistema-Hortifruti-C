@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> //Para trabalhar com strings.
+#include <string.h> //Para trabalhar com cadeia de caracteres do tipo string.
 #include <locale.h> //Permite que o código entenda caracteres especiais.
 #include <windows.h> //Uso de funções do sistema.
 #include <conio.h> //Para personalizar as definições de cores.
