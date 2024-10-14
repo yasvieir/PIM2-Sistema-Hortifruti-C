@@ -36,3 +36,20 @@ void mascSenha(char ent_senha, char *senha[TAM_user]){
         strcpy(senha, senha_usuario);
     }while(ent_senha != 13);
 }
+
+int lerUltimoID(){
+
+    FILE *arquivo;
+
+    // Verifica se o arquivo existe
+    arquivo = fopen("ultimo_id.bin", "rb");
+    if(arquivo != NULL){
+        fread(&ultimoID, sizeof(int), 1, arquivo); // Lê o último ID do arquivo
+        fclose(arquivo);
+    }else{
+        // Se o arquivo não existir, inicializa ultimoID com 0
+        ultimoID = 0;
+    }
+
+    return ultimoID;
+}

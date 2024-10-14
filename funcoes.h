@@ -5,4 +5,6 @@ void verficaLogin(char ent_usuario[TAM_user], char ent_senha[TAM_user], int *use
 
 void mascSenha(char ent_senha, char *senha[TAM_user]);
 
+int lerUltimoID();
+
 #endif // FUNCOES_H_INCLUDED
