@@ -9,4 +9,6 @@ int lerUltimoID();
 
 int salvarUltimoID(int ultimoID);
 
+int gerarID();
+
 #endif // FUNCOES_H_INCLUDED

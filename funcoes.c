@@ -66,3 +66,15 @@ int salvarUltimoID(int ultimoID){
         fclose(arquivo);
     }
 }
+
+int gerarID(){
+
+    static int ultimoID; // Remove a inicialização com lerUltimoID().
+
+    //Verificando se é a primeira vez que a função é chamada.
+    if(ultimoID == 0){
+        // Lê o último ID do arquivo.
+        ultimoID = lerUltimoID();
+    }
+    return ++ultimoID; // Retorna o próximo ID incremental.
+}
