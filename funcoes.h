@@ -7,4 +7,6 @@ void mascSenha(char ent_senha, char *senha[TAM_user]);
 
 int lerUltimoID();
 
+int salvarUltimoID(int ultimoID);
+
 #endif // FUNCOES_H_INCLUDED

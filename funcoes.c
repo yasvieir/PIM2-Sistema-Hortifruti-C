@@ -53,3 +53,16 @@ int lerUltimoID(){
 
     return ultimoID;
 }
+
+int salvarUltimoID(int ultimoID){
+
+    FILE *arquivo;
+
+    //Abre um arquivo binário (cria de não existe).
+    arquivo = fopen("ultimo_id.bin", "wb");
+    if(arquivo != NULL){
+        //Escreve o último ID no arquivo.
+        fwrite(&ultimoID, sizeof(int), 1, arquivo);
+        fclose(arquivo);
+    }
+}
