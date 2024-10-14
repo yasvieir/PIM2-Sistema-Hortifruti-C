@@ -72,6 +72,47 @@ void TelaCadastro(){
 
 void NovoCadastro(){
 
-    Pessoa
+    system("title Novo Cadastro");
 
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
+    animacao_de_carregamento();
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+
+    Pessoa pessoa;
+    FILE *arquivo;
+
+    //Verifica se o arquivo existe.
+    arquivo = fopen("cadastros.bin", "rb");
+    if(arquivo == NULL){
+        //Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
+        arquivo = fopen("cadastros.bin", "wb");
+        if(arquivo == NULL){
+            printf(RED "\n\n\t\t\t\t [ERRO:] Ocorreu um erro ao criar o arquivo!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            return;
+        }
+        //Cria cadastro do Administrador.
+        pessoa.ID = 0;
+        strcpy(pessoa.nome, "Administrador");
+        strcpy(pessoa.login.usuario, "admin");
+        strcpy(pessoa.login.senha, "admin123");
+        strcpy(pessoa.cargo, "ADM");
+
+        //Escreve cadastro Administrador no arquivo.
+        fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
+
+        fclose(arquivo);
+    }else{
+        fclose(arquivo);
+    }
 }
