@@ -207,17 +207,27 @@ void telaMenuAdmin(){
             telaSaida();
             break;
         default :
-            printf("\n\n\t\t\t\t\t\t [!} Opção Inválida!");
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
         telaLimpa();
-    }while(escolha != 3);
+    }while(escolha != 0);
     telaLimpa();
 }
 
 void telaGerente(){
 
     system("title Menu Gerencia");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
 
     int escolha;
 
@@ -247,7 +257,9 @@ void telaGerente(){
 
             break;
         default :
-            printf("\n\n\t\t\t\t\t\t [!} Opção Inválida!");
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
         telaLimpa();
@@ -258,6 +270,14 @@ void telaGerente(){
 void telaFuncionario(){
 
     system("title Menu Funcionário");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
 
     int escolha;
 
@@ -286,7 +306,9 @@ void telaFuncionario(){
 
             break;
         default :
-            printf("\n\n\t\t\t\t\t\t [!} Opção Inválida!");
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
         telaLimpa();
@@ -295,6 +317,7 @@ void telaFuncionario(){
 }
 
 void telaSaida(){
+
     system("title Menu");
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -375,7 +398,9 @@ void telaSaida(){
             telaLimpa();
             break;
         default :
-            printf("\n\n\t\t\t\t\t\t [!} Opção Inválida!");
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
         telaLimpa();
