@@ -2,12 +2,19 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
 
+//Início de dados para cadastro de funcionários;
 #define TAM_user 13
 #define TAM_nome 101
 #define TAM_comp 11
 #define TAM_cep 10
 #define TAM_cpf 15
 #define TAM_rg 13
+#define TAM_cargo 11
+
+#define CARGO_1 ADM
+#define CARGO_2 GERENTE
+#define CARGO_3 OP_CAIXA
+#define CARGO_4 ESTOQUISTA
 
 typedef struct login_pessoa{
     char usuario[TAM_user],
@@ -35,9 +42,13 @@ typedef struct dados_pessoa{
     int ID;
     char nome[TAM_nome];
     Login login;
+    char cargo[TAM_cargo];
     DataNasc datanasc;
     Documentos documentos;
     Endereco endereco;
 }Pessoa;
+
+int ultimoID = 0; // Variável para armazenar o último ID gerado
+//Fim
 
 #endif // STRUCTS_H_INCLUDED
