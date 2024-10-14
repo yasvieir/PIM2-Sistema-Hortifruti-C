@@ -246,7 +246,8 @@ void telaGerente(){
                  "                                          |                               |                                             \n"
                  "                                          #===============================#                                             \n"
                "\n                                         Escolha uma opção para continuar: ");
-        scanf("%d", &escolha);
+
+        scanf("%i", &escolha);
 
         switch(escolha){
         case 1:
@@ -295,7 +296,8 @@ void telaFuncionario(){
                  "                                          |                               |                                             \n"
                  "                                          #===============================#                                             \n"
                "\n                                         Escolha uma opção para continuar: ");
-        scanf("%d", &escolha);
+
+        scanf("%i", &escolha);
 
         switch(escolha){
         case 1:

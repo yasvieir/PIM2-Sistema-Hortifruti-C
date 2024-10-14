@@ -43,15 +43,16 @@
 	"funcoes.c"
 	"estilos.c"
 
-1728869864 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
+1728943174 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
 	"interface.h"
 	"structs.h"
 	"funcoes.h"
 	"estilos.h"
+	"cadastros.h"
 
 1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.h
 
-1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\structs.h
+1728944322 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\structs.h
 
 1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.h
 
@@ -62,4 +63,6 @@
 
 1728849789 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estilos.c
 	"estilos.h"
+
+1728943702 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\cadastros.h
 
