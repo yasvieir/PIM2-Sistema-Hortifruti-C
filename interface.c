@@ -241,7 +241,6 @@ void telaGerente(){
                  "                                          |   [1] - Cadastros             |                                             \n"
                  "                                          |   [2] - Pedidos               |                                             \n"
                  "                                          |   [3] - Estoque               |                                             \n"
-                 "                                          |   [4] - Minhas Informações    |                                             \n"
                  "                                          |   [0] - Sair                  |                                             \n"
                  "                                          |                               |                                             \n"
                  "                                          #===============================#                                             \n"

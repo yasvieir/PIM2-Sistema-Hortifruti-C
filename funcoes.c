@@ -78,3 +78,38 @@ int gerarID(){
     }
     return ++ultimoID; // Retorna o próximo ID incremental.
 }
+
+int usuarioExiste(char *usuario){
+
+    FILE *arquivo;
+
+    //Abre um arquivo binário (cria de não existe).
+    arquivo = fopen("cadastros.bin", "rb");
+
+    if(arquivo == NULL){
+        return 0; //Arquivo não existe, ou não pode ser aberto;
+    }
+
+    Pessoa pessoa;
+    while(fread(&pessoa, sizeof(Pessoa), 1, arquivo)){
+        if(pessoa.ID != 1 && strcmp(pessoa.login.usuario, usuario) == 0){
+            fclose(arquivo);
+            return 1; //Usuário encontrado.
+        }
+    }
+    fclose(arquivo);
+    return 0;
+}
+
+void verificaSenhas(char ent_senha1[], char ent_senha2[], int *comparador){
+
+    int compSenha;
+
+    compSenha = strcmp(ent_senha1, ent_senha2);
+
+    if(compSenha == 0){
+        *comparador = 0;
+    }else{
+        *comparador = 1;
+    }
+}

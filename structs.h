@@ -10,6 +10,7 @@
 #define TAM_cpf 15
 #define TAM_rg 13
 #define TAM_cargo 11
+#define TAM_nasc 11
 
 #define CARGO_1 ADM
 #define CARGO_2 GERENTE
@@ -29,10 +30,6 @@ typedef struct endereco_pessoa{
     int num_resid;
 }Endereco;
 
-typedef struct dataNasc_pessoa{
-    int dia, mes, ano;
-}DataNasc;
-
 typedef struct documentos_pessoa{
     char cpf[TAM_cpf],
          rg[TAM_rg];
@@ -42,8 +39,9 @@ typedef struct dados_pessoa{
     int ID;
     char nome[TAM_nome];
     Login login;
-    char cargo[TAM_cargo];
-    DataNasc datanasc;
+    char email[TAM_nome],
+         cargo[TAM_cargo],
+         nasc[TAM_nasc];
     Documentos documentos;
     Endereco endereco;
 }Pessoa;

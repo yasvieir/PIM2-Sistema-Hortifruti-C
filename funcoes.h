@@ -11,4 +11,8 @@ int salvarUltimoID(int ultimoID);
 
 int gerarID();
 
+int usuarioExiste(char *usuario);
+
+void verificaSenhas(char ent_senha1[], char ent_senha2[], int *comparador);
+
 #endif // FUNCOES_H_INCLUDED
