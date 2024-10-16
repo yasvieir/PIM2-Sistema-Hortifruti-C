@@ -15,10 +15,6 @@ void TelaCadastro(){
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
-    animacao_de_carregamento();
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-
     int escolha;
 
     do{
@@ -27,11 +23,11 @@ void TelaCadastro(){
                  "                                          |           CADASTRO            |                                             \n"
                  "                                          #===============================#                                             \n"
                  "                                          |                               |                                             \n"
+                 "                                          |   [0] - Voltar                |                                             \n"
                  "                                          |   [1] - Novo Cadastros        |                                             \n"
                  "                                          |   [2] - Listar Cadastros      |                                             \n"
                  "                                          |   [3] - Editar Cadastro       |                                             \n"
                  "                                          |   [4] - Meus Dados            |                                             \n"
-                 "                                          |   [0] - Sair                  |                                             \n"
                  "                                          |                               |                                             \n"
                  "                                          #===============================#                                             \n"
                "\n                                         Escolha uma opção para continuar: ");
@@ -82,6 +78,7 @@ void NovoCadastro(){
     saved_attributes = consoleInfo.wAttributes;
 
     Pessoa pessoa;
+
     FILE *arquivo;
 
     //Verifica se o arquivo existe.
@@ -376,6 +373,7 @@ void NovoCadastro(){
         }
     }
     //Campo de inserção - Data de nascimento:
+    printf("\n\n                                                     DOCUMENTOS:");
     while(1){
         printf("\n                Data de Nascimento(00/00/0000): ");
         fgets(pessoa.nasc, sizeof(pessoa.nasc), stdin);
@@ -402,7 +400,8 @@ void NovoCadastro(){
                    "\n\n                                                       CARGO:"
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo);
+                   "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:");
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -435,6 +434,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
         }else{
             break; //Sai do loop se o nome for válido
@@ -468,6 +468,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf);
         }else{
@@ -503,6 +504,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
                    "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
@@ -541,6 +543,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
                    "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
@@ -578,6 +581,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
                    "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
@@ -616,6 +620,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
                    "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
@@ -655,6 +660,7 @@ void NovoCadastro(){
                    "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
                    "\n                               Digite o número correspondente ao cargo escolhido: "
                    "\n                                         Cargo: %s", pessoa.cargo,
+                   "\n\n                                                     DOCUMENTOS:"
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
                    "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
@@ -663,33 +669,332 @@ void NovoCadastro(){
                    "\n                                        Número: %s", pessoa.endereco.num_resid,
                    "\n                                        Bairro: %s", pessoa.endereco.bairro,
                    "\n                                CEP(00000-000): %s", pessoa.endereco.cep);
-
-
         }else{
             break; //Sai do loop se o nome for válido.
         }
     }
 
-    //Abre arquivo para escrita binária.
-    arquivo = fopen("cadastros.bin", "wb");
+    int escolha;
+    printf("\n\n                                          [1] SALVAR | [2] EDITAR | [3] CANCELAR"
+           "\n                                                  Escolha uma opção: ");
+    scanf("%i", &escolha);
+    fflush(stdin);
 
-    //Verifica se o arquivo foi encontrado.
-    if(arquivo == NULL){
-        printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!"); bold(1);
+    switch(escolha){
+    case 1:
+        //Abre arquivo para escrita binária.
+        arquivo = fopen("cadastros.bin", "wb");
+
+        //Verifica se o arquivo foi encontrado.
+        if(arquivo == NULL){
+            bold(1);
+            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            return;
+        }
+
+        //Escreve dados inseridos no arquivo.
+        fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
+
+        //Fecha arquivo.
+        fclose(arquivo);
+
+        //Salva o último ID.
+        salvarUltimoID(pessoa.ID);
+
+        //Mensagem de cadastro realizado.
+        bold(1);
+        printf(GREEN "\n\n                                            Cadastro realizado com sucesso!\a\a");
         bold(0);
         SetConsoleTextAttribute(hConsole, saved_attributes);
         Sleep(800);
-        return;
-    }
 
-    //Escreve dados inseridos no arquivo.
-    fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
+        telaLimpa();
+        TelaCadastro();
 
-    //Fecha arquivo.
-    fclose(arquivo);
+    case 2:
+        telaLimpa();
+        printf("\n                                          #===============================#                                             \n"
+             "                                          |           CADASTRO            |                                             \n"
+             "                                          #===============================#                                             \n"
+             "                                                                                                                        \n"
+             "                                            ID: %i", pessoa.ID,
+           "\n\n                                                  DADOS DO USUÁRIO:"
+           "\n                                          Nome: %s", pessoa.nome,
+           "\n                                       Usuário: %s", pessoa.login.usuario,
+           "\n                                         Senha: %s", senha1,
+           "\n                                        e-mail: %s", pessoa.email,
+           "\n\n                                                       CARGO:"
+           "\n                                         Cargo: %s", pessoa.cargo,
+           "\n\n                                                     DOCUMENTOS:"
+           "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
+           "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
+           "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+           "\n\n                                                      ENDEREÇO:"
+           "\n                                           Rua: %s", pessoa.endereco.rua,
+           "\n                                        Número: %s", pessoa.endereco.num_resid,
+           "\n                                        Bairro: %s", pessoa.endereco.bairro,
+           "\n                                CEP(00000-000): %s", pessoa.endereco.cep,
+           "\n                                   Complemento: %s", pessoa.endereco.complemento,
+           "\n\n                                                    INFORMAÇÕES: \n"
+           "\n\n                                                  DADOS DO USUÁRIO:"
+           "\n                                     [1] Nome | [2] Usuário | [3] Senha | [4] e-mail"
+           "\n\n                                                       CARGO:"
+           "\n                                                       [5] cargo"
+           "\n\n                                                     DOCUMENTOS:"
+           "\n                                         [6] Data Nascimento | [7] CPF | [8] RG"
+           "\n\n                                                      ENDEREÇO:"
+           "\n                             [9] Rua | [10] Número | [11] Bairro | [12] CEP | [13] Complemento"
+           "\n\n                                          Qual informação deseja editar: \n");
+        int opcao;
+        scanf("%i", opcao);
+        fflush(stdin);
 
-    //Salva o último ID.
-    salvarUltimoID(pessoa.ID);
+        telaLimpa();
+        printf("\n\n\n\n\n\n\n"
+               "\n                                          #===============================#                                             \n"
+                 "                                          |            EDITAR             |                                             \n"
+                 "                                          #===============================#                                             \n"
+                 "                                                                                                                        \n");
+
+        switch(opcao){
+        case 1:
+            //Campo de inserção - Nome:
+            while(1){
+                printf("\n                                          Nome: ");
+                fgets(pessoa.nome, sizeof(pessoa.nome), stdin);
+                pessoa.nome[strcspn(pessoa.nome, "\n")] = 0; //Remove caractere de nova linha.
+                fflush(stdin);
+
+                if(strlen(pessoa.nome) == 0){
+                    bold(1);
+                    printf(RED "\n\n                                       [!] O campo nome não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n\n\n\n\n\n\n"
+                           "\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n");
+                }else{
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+
+            //Mensagem de alteração realizada.
+            bold(1);
+            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            break;
+        case 2:
+            //Campo de Inserção - Usuário:
+            while(1){
+                printf("\n                                       Usuário: ");
+                fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
+                pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; //Remove caractere de nova linha.
+                fflush(stdin);
+
+                while(usuarioExiste(pessoa.login.usuario)){
+                    printf("\n\n                              [!] O Usuário já existe, por favor escolha outro!\a");
+                    printf("\n                                       Usuário: ");
+                    fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
+                    pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; //Remove caractere de nova linha.
+                    fflush(stdin);
+
+                }
+
+                if(strlen(pessoa.login.usuario) == 0){
+                    bold(1);
+                    printf(RED "\n\n                                     [!] O campo usuário não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n\n\n\n\n\n\n"
+                           "\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n");
+                }else{
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+
+            //Mensagem de alteração realizada.
+            bold(1);
+            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            break;
+        case 3:
+            //Campo de insersão - Senha:
+            while(1){
+                printf("\n                                         Senha: ");
+                mascSenha(ent_senha1, &senha1);
+                fflush(stdin);
+
+                if(strlen(senha1) == 0){
+                    bold(1);
+                    printf(RED "\n\n                                      [!] O campo senha não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n");
+
+                }else{
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+            //Campo de insersão - Confirmação de Senha:
+            while(1){
+                printf("\n                            Confirme sua senha: ");
+                mascSenha(ent_senha2, &senha2);
+                fflush(stdin);
+
+                if(strlen(senha2) == 0){
+                    bold(1);
+                    printf(RED "\n\n                               [!] O campo confirme sua senha não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n"
+                           "\n                                         Senha: %s", senha1);
+                }else{
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+            int comparador;
+            //Verifica se senhas são iguais:
+            verificaSenhas(senha1, senha2, &comparador);
+            if(comparador == 1){
+                do{
+                    bold(1);
+                    printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n");
+                    //Campo de insersão - Senha:
+                    while(1){
+                        printf("\n                                         Senha: ");
+                        mascSenha(ent_senha1, &senha1);
+                        fflush(stdin);
+
+                        if(strlen(senha1) == 0){
+                            bold(1);
+                            printf(RED "\n\n                                      [!] O campo senha não pode estar vazio!\a");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            printf("\n                                          #===============================#                                             \n"
+                                     "                                          |            EDITAR             |                                             \n"
+                                     "                                          #===============================#                                             \n"
+                                     "                                                                                                                        \n");
+
+                        }else{
+                            break; //Sai do loop se o nome for válido
+                        }
+                    }
+                    //Campo de insersão - Confirmação de Senha:
+                    while(1){
+                        printf("\n                            Confirme sua senha: ");
+                        mascSenha(ent_senha2, &senha2);
+                        fflush(stdin);
+
+                        if(strlen(senha2) == 0){
+                            bold(1);
+                            printf(RED "\n\n                               [!] O campo confirme sua senha não pode estar vazio!\a");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            printf("\n                                          #===============================#                                             \n"
+                                     "                                          |            EDITAR             |                                             \n"
+                                     "                                          #===============================#                                             \n"
+                                     "                                                                                                                        \n"
+                                   "\n                                         Senha: %s", senha1);
+                        }else{
+                            break; //Sai do loop se o nome for válido
+                        }
+                    }
+                }while(comparador == 1);
+            }else{
+                senha1[strcspn(senha1, "\n")] = 0;
+                strcpy(pessoa.login.senha, senha1);
+            }
+
+            //Mensagem de alteração realizada.
+            bold(1);
+            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            break;
+        case 4:
+            //Campo de Inserção - E-mail:
+            while(1){
+                printf("\n                                         e-mail: ");
+                fgets(pessoa.email, sizeof(pessoa.email), stdin);
+                pessoa.email[strcspn(pessoa.email, "\n")] = 0; //Remove caractere de nova linha.
+                fflush(stdin);
+
+                if(strlen(pessoa.email) == 0){
+                    bold(1);
+                    printf(RED "\n\n\t\t\t [!] O campo e-mail não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n                                          #===============================#                                             \n"
+                             "                                          |            EDITAR             |                                             \n"
+                             "                                          #===============================#                                             \n"
+                             "                                                                                                                        \n");
+
+                }else{
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+
+            //Mensagem de alteração realizada.
+            bold(1);
+            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+        break;
+        }
+    case 3:
+        telaLimpa();
+        TelaCadastro();
+        }
 }
 
 void ListarCadastros(){

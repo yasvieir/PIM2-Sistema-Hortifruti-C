@@ -31,7 +31,7 @@
 1727827620 c:\users\zukki\downloads\pim\estilos.c
 	"estilos.h"
 
-1728794110 source:c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\main.c
+1729042216 source:c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -42,31 +42,32 @@
 	"interface.c"
 	"funcoes.c"
 	"estilos.c"
+	"cadastros.c"
 
-1729042168 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
+1729113978 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
 	"interface.h"
 	"structs.h"
 	"funcoes.h"
 	"estilos.h"
-	"cadastros.c"
+	"cadastros.h"
 
 1729042148 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.h
 
-1729027241 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\structs.h
+1729043378 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\structs.h
 
-1729035068 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.h
+1729114207 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.h
 
 1728793617 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estilos.h
 
-1729036134 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.c
+1729114195 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\funcoes.c
 	"funcoes.h"
 
 1728849789 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estilos.c
 	"estilos.h"
 
-1728943702 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\cadastros.h
+1729114456 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\cadastros.h
 
-1729041796 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\cadastros.c
+1729114626 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\cadastros.c
 	"cadastros.h"
 	"structs.h"
 	"estilos.h"
