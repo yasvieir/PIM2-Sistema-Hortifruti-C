@@ -22,14 +22,14 @@ void TelaCadastro(){
     int escolha;
 
     do{
-        "\n\n\n\n\n\n\n"
+        printf("\n\n\n\n\n\n\n"
                "\n                                          #===============================#                                             \n"
                  "                                          |           CADASTRO            |                                             \n"
                  "                                          #===============================#                                             \n"
                  "                                          |                               |                                             \n"
                  "                                          |   [1] - Novo Cadastros        |                                             \n"
                  "                                          |   [2] - Listar Cadastros      |                                             \n"
-                 "                                          |   [4] - Editar Cadastro       |                                             \n"
+                 "                                          |   [3] - Editar Cadastro       |                                             \n"
                  "                                          |   [4] - Meus Dados            |                                             \n"
                  "                                          |   [0] - Sair                  |                                             \n"
                  "                                          |                               |                                             \n"
@@ -65,7 +65,6 @@ void TelaCadastro(){
             Sleep(800);
         }
         telaLimpa();
-        }
     }while(escolha != 0);
     telaLimpa();
 }
@@ -102,7 +101,7 @@ void NovoCadastro(){
         strcpy(pessoa.nome, "Administrador");
         strcpy(pessoa.login.usuario, "admin");
         strcpy(pessoa.login.senha, "admin123");
-        strcpy(pessoa.cargo, CARGO_1);
+        strcpy(pessoa.cargo, "ADMINISTRADOR");
 
         //Escreve cadastro Administrador no arquivo.
         fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
@@ -332,23 +331,23 @@ void NovoCadastro(){
         }
     }
     //Campo de seleção - Cargo:
-    int escolhacargo;
+    int escolhaCargo;
     printf("\n\n                                                       CARGO:"
              "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA");
     while(1){
         printf("\n                               Digite o número correspondente ao cargo escolhido: ");
-        scanf("i", &escolhacargo);
+        scanf("%i", &escolhaCargo);
         fflush(stdin);
 
-        switch(escolhacargo){
+        switch(escolhaCargo){
         case 1:
-            pessoa.cargo = CARGO_2;
+            strcpy(pessoa.cargo, "GERENTE");
             break;
         case 2:
-            pessoa.cargo = CARGO_3;
+            strcpy(pessoa.cargo, "OPERADOR DE CAIXA");
             break;
         case 3:
-            pessoa.cargo = CARGO_4;
+            strcpy(pessoa.cargo, "ESTOQUISTA");
             break;
         default:
             bold(1);
@@ -506,7 +505,7 @@ void NovoCadastro(){
                    "\n                                         Cargo: %s", pessoa.cargo,
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documento.rg
+                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
                    "\n\n                                                      ENDEREÇO:");
         }else{
             break; //Sai do loop se o nome for válido
@@ -517,12 +516,11 @@ void NovoCadastro(){
     while(1){
         printf("\n                                        Número: ");
         scanf("%i", &numero);
-        numero[strcspn(numero, "\n")] = 0; //Remove caractere de nova linha.
         fflush(stdin);
 
-        pessoa.endereco.num_resd = numero;
+        pessoa.endereco.num_resid = numero;
 
-        if(strlen(pessoa.endereco.num_resd) == 0){
+        if(strlen(pessoa.endereco.num_resid) == 0){
             bold(1);
             printf(RED "\n\n                                     [!] O campo Número não pode estar vazio!\a");
             bold(0);
@@ -545,7 +543,7 @@ void NovoCadastro(){
                    "\n                                         Cargo: %s", pessoa.cargo,
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documento.rg,
+                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
                    "\n\n                                                      ENDEREÇO:"
                    "\n                                           Rua: %s", pessoa.endereco.rua);
         }else{
@@ -555,11 +553,11 @@ void NovoCadastro(){
     //Campo de inserção - Bairro:
     while(1){
         printf("\n                                        Bairro: ");
-        fgets(pessoa.endereco.bairo, sizeof(pessoa.endereco.bairo), stdin);
-        pessoa.endereco.bairo[strcspn(pessoa.endereco.bairo, "\n")] = 0; //Remove caractere de nova linha.
+        fgets(pessoa.endereco.bairro, sizeof(pessoa.endereco.bairro), stdin);
+        pessoa.endereco.bairro[strcspn(pessoa.endereco.bairro, "\n")] = 0; //Remove caractere de nova linha.
         fflush(stdin);
 
-        if(strlen(pessoa.endereco.bairo) == 0){
+        if(strlen(pessoa.endereco.bairro) == 0){
             bold(1);
             printf(RED "\n\n                                     [!] O campo Bairro não pode estar vazio!\a");
             bold(0);
@@ -582,7 +580,7 @@ void NovoCadastro(){
                    "\n                                         Cargo: %s", pessoa.cargo,
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documento.rg,
+                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
                    "\n\n                                                      ENDEREÇO:"
                    "\n                                           Rua: %s", pessoa.endereco.rua,
                    "\n                                        Número: %s", pessoa.endereco.num_resid);
@@ -620,7 +618,7 @@ void NovoCadastro(){
                    "\n                                         Cargo: %s", pessoa.cargo,
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documento.rg,
+                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
                    "\n\n                                                      ENDEREÇO:"
                    "\n                                           Rua: %s", pessoa.endereco.rua,
                    "\n                                        Número: %s", pessoa.endereco.num_resid,
@@ -659,7 +657,7 @@ void NovoCadastro(){
                    "\n                                         Cargo: %s", pessoa.cargo,
                    "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
                    "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documento.rg,
+                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
                    "\n\n                                                      ENDEREÇO:"
                    "\n                                           Rua: %s", pessoa.endereco.rua,
                    "\n                                        Número: %s", pessoa.endereco.num_resid,
@@ -692,6 +690,16 @@ void NovoCadastro(){
 
     //Salva o último ID.
     salvarUltimoID(pessoa.ID);
+}
 
+void ListarCadastros(){
+
+}
+
+void EditarCadastro(){
+
+}
+
+void DadosUsuario(){
 
 }

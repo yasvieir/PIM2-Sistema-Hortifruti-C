@@ -5,6 +5,7 @@
 #include "estilos.h"
 #include "cadastros.h"
 
+
 void telaTamanho(){
     system("MODE con cols=168 lines=60");// configura a quantidad de colunas e linhas que o console terá;
 }
@@ -251,7 +252,7 @@ void telaGerente(){
         switch(escolha){
         case 1:
             telaLimpa();
-
+            TelaCadastro();
             break;
         case 2:
             telaLimpa();

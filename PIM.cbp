@@ -31,6 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cadastros.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="cadastros.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="estilos.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -58,6 +65,10 @@
 		<Unit filename="structs.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

@@ -10,6 +10,7 @@
 #include "interface.c"
 #include "funcoes.c"
 #include "estilos.c"
+#include "cadastros.c"
 
 int main(int argc, char *argv[]){
 

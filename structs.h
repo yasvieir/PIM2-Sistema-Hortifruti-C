@@ -12,11 +12,6 @@
 #define TAM_cargo 11
 #define TAM_nasc 11
 
-#define CARGO_1 ADM
-#define CARGO_2 GERENTE
-#define CARGO_3 OP_CAIXA
-#define CARGO_4 ESTOQUISTA
-
 typedef struct login_pessoa{
     char usuario[TAM_user],
          senha[TAM_user];
