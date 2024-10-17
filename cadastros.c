@@ -31,8 +31,8 @@ void TelaCadastro(){
                  "                                          |                               |                                             \n"
                  "                                          #===============================#                                             \n"
                "\n                                         Escolha uma opção para continuar: ");
-
         scanf("%i", &escolha);
+        fflush(stdin);
 
         switch(escolha){
         case 1:
@@ -95,10 +95,10 @@ void NovoCadastro(){
         }
         //Cria cadastro do Administrador.
         pessoa.ID = 0;
-        strcpy(pessoa.nome, "Administrador");
-        strcpy(pessoa.login.usuario, "admin");
-        strcpy(pessoa.login.senha, "admin123");
-        strcpy(pessoa.cargo, "ADMINISTRADOR");
+        strcpy(pessoa.nome, "Administrador\0");
+        strcpy(pessoa.login.usuario, "admin\0");
+        strcpy(pessoa.login.senha, "admin123\0");
+        strcpy(pessoa.cargo, "ADMINISTRADOR\0");
 
         //Escreve cadastro Administrador no arquivo.
         fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
@@ -132,11 +132,12 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: ", pessoa.ID);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: ", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:");
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -149,8 +150,21 @@ void NovoCadastro(){
         fflush(stdin);
 
         while(usuarioExiste(pessoa.login.usuario)){
-            printf("\n\n                              [!] O Usuário já existe, por favor escolha outro!\a");
-            printf("\n                                       Usuário: ");
+            bold(1);
+            printf(RED "\n\n                                 [!] O Usuário já existe, por favor escolha outro!\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: ", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                       Usuário: ");
             fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
             pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; //Remove caractere de nova linha.
             fflush(stdin);
@@ -164,12 +178,13 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: %i", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -179,6 +194,12 @@ void NovoCadastro(){
          ent_senha2, senha2[TAM_user];
     while(1){
         printf("\n                                         Senha: ");
+
+        ent_senha1 = '\0';
+        for (int i = 0; i < TAM_user; i++) {
+            senha1[i] = '\0';
+        }
+
         mascSenha(ent_senha1, &senha1);
         fflush(stdin);
 
@@ -189,13 +210,14 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: %i", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
 
         }else{
             break; //Sai do loop se o nome for válido
@@ -204,6 +226,12 @@ void NovoCadastro(){
     //Campo de insersão - Confirmação de Senha:
     while(1){
         printf("\n                            Confirme sua senha: ");
+
+        ent_senha2 = '\0';
+        for (int i = 0; i < TAM_user; i++) {
+            senha2[i] = '\0';
+        }
+
         mascSenha(ent_senha2, &senha2);
         fflush(stdin);
 
@@ -214,14 +242,15 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: %i", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
+            printf(  "\n                                         Senha: %s", senha1);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -230,23 +259,32 @@ void NovoCadastro(){
     //Verifica se senhas são iguais:
     verificaSenhas(senha1, senha2, &comparador);
     if(comparador == 1){
+        comparador = 0;
+        bold(1);
+        printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        telaLimpa();
         do{
-            bold(1);
-            printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-            telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: %i", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
+
             //Campo de insersão - Senha:
             while(1){
                 printf("\n                                         Senha: ");
+
+                ent_senha1 = '\0';
+                for (int i = 0; i < TAM_user; i++) {
+                    senha1[i] = '\0';
+                }
+
                 mascSenha(ent_senha1, &senha1);
                 fflush(stdin);
 
@@ -257,13 +295,14 @@ void NovoCadastro(){
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     Sleep(800);
                     telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |           CADASTRO            |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n"
-                             "                                            ID: %i", pessoa.ID,
-                           "\n                                          Nome: %s", pessoa.nome,
-                           "\n                                       Usuário: %s", pessoa.login.usuario);
+                    printf(  "\n                                          #===============================#                                             \n"
+                               "                                          |           CADASTRO            |                                             \n"
+                               "                                          #===============================#                                             \n"
+                               "                                                                                                                        \n"
+                               "                                            ID: %i", pessoa.ID);
+                    printf("\n\n                                                  DADOS DO USUÁRIO:"
+                             "\n                                          Nome: %s", pessoa.nome);
+                    printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
 
                 }else{
                     break; //Sai do loop se o nome for válido
@@ -272,6 +311,11 @@ void NovoCadastro(){
             //Campo de insersão - Confirmação de Senha:
             while(1){
                 printf("\n                            Confirme sua senha: ");
+
+                ent_senha2 = '\0';
+                for (int i = 0; i < TAM_user; i++) {
+                    senha2[i] = '\0';
+                }
                 mascSenha(ent_senha2, &senha2);
                 fflush(stdin);
 
@@ -282,18 +326,21 @@ void NovoCadastro(){
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     Sleep(800);
                     telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |           CADASTRO            |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n"
-                             "                                            ID: %i", pessoa.ID,
-                           "\n                                          Nome: %s", pessoa.nome,
-                           "\n                                       Usuário: %s", pessoa.login.usuario,
-                           "\n                                         Senha: %s", senha1);
+                    printf(  "\n                                          #===============================#                                             \n"
+                               "                                          |           CADASTRO            |                                             \n"
+                               "                                          #===============================#                                             \n"
+                               "                                                                                                                        \n"
+                               "                                            ID: %i", pessoa.ID);
+                    printf("\n\n                                                  DADOS DO USUÁRIO:"
+                             "\n                                          Nome: %s", pessoa.nome);
+                    printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
+                    printf(  "\n                                         Senha: %s", senha1);
                 }else{
                     break; //Sai do loop se o nome for válido
                 }
             }
+            //Verifica se senhas são iguais:
+            verificaSenhas(senha1, senha2, &comparador);
         }while(comparador == 1);
     }else{
         senha1[strcspn(senha1, "\n")] = 0;
@@ -313,23 +360,28 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2);
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
+                       "                                                                                                                        \n"
+                       "                                            ID: %i", pessoa.ID);
+            printf("\n\n                                                  DADOS DO USUÁRIO:"
+                     "\n                                          Nome: %s", pessoa.nome);
+            printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
+            printf(  "\n                                         Senha: %s", senha1);
+            printf(  "\n                            Confirme sua senha: %s", senha2);
 
         }else{
             break; //Sai do loop se o nome for válido
         }
     }
+    telaLimpa();
     //Campo de seleção - Cargo:
     int escolhaCargo;
-    printf("\n\n                                                       CARGO:"
+    printf(  "\n                                          #===============================#                                             \n"
+               "                                          |           CADASTRO            |                                             \n"
+               "                                          #===============================#                                             \n"
+           "\n\n                                                       CARGO:"
              "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA");
     while(1){
         printf("\n                               Digite o número correspondente ao cargo escolhido: ");
@@ -353,18 +405,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA");
+                     "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA");
         }
 
         if(escolhaCargo >= 1 && escolhaCargo <= 4){
@@ -372,8 +417,12 @@ void NovoCadastro(){
             break; //Sai do loop se a opção for válida
         }
     }
+    telaLimpa();
     //Campo de inserção - Data de nascimento:
-    printf("\n\n                                                     DOCUMENTOS:");
+    printf(  "\n                                          #===============================#                                             \n"
+               "                                          |           CADASTRO            |                                             \n"
+               "                                          #===============================#                                             \n"
+           "\n\n                                                     DOCUMENTOS:");
     while(1){
         printf("\n                Data de Nascimento(00/00/0000): ");
         fgets(pessoa.nasc, sizeof(pessoa.nasc), stdin);
@@ -387,20 +436,9 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                     DOCUMENTOS:");
         }else{
             break; //Sai do loop se o nome for válido
@@ -420,22 +458,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
+                     "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -454,29 +481,21 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf);
+                     "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
+            printf(  "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf);
         }else{
             break; //Sai do loop se o nome for válido
         }
     }
     //Campo de inserção - Rua:
-    printf("\n\n                                                      ENDEREÇO:");
+    printf(  "\n                                          #===============================#                                             \n"
+               "                                          |           CADASTRO            |                                             \n"
+               "                                          #===============================#                                             \n"
+           "\n\n                                                      ENDEREÇO:");
     while(1){
         printf("\n                                           Rua: ");
         fgets(pessoa.endereco.rua, sizeof(pessoa.endereco.rua), stdin);
@@ -490,24 +509,9 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
-                   "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                      ENDEREÇO:");
         }else{
             break; //Sai do loop se o nome for válido
@@ -529,26 +533,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
-                   "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                      ENDEREÇO:"
-                   "\n                                           Rua: %s", pessoa.endereco.rua);
+                     "\n                                           Rua: %s", pessoa.endereco.rua);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -567,27 +556,12 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
-                   "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                      ENDEREÇO:"
-                   "\n                                           Rua: %s", pessoa.endereco.rua,
-                   "\n                                        Número: %s", pessoa.endereco.num_resid);
+                     "\n                                           Rua: %s", pessoa.endereco.rua);
+            printf(  "\n                                        Número: %s", pessoa.endereco.num_resid);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -606,28 +580,13 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
-                   "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                      ENDEREÇO:"
-                   "\n                                           Rua: %s", pessoa.endereco.rua,
-                   "\n                                        Número: %s", pessoa.endereco.num_resid,
-                   "\n                                        Bairro: %s", pessoa.endereco.bairro);
+                     "\n                                           Rua: %s", pessoa.endereco.rua);
+            printf(  "\n                                        Número: %s", pessoa.endereco.num_resid);
+            printf(  "\n                                        Bairro: %s", pessoa.endereco.bairro);
         }else{
             break; //Sai do loop se o nome for válido
         }
@@ -646,29 +605,14 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            printf("\n                                          #===============================#                                             \n"
-                     "                                          |           CADASTRO            |                                             \n"
-                     "                                          #===============================#                                             \n"
-                     "                                                                                                                        \n"
-                     "                                            ID: %i", pessoa.ID,
-                   "\n                                          Nome: %s", pessoa.nome,
-                   "\n                                       Usuário: %s", pessoa.login.usuario,
-                   "\n                                         Senha: %s", senha1,
-                   "\n                            Confirme sua senha: %s", senha2,
-                   "\n                                        e-mail: %s", pessoa.email,
-                   "\n\n                                                       CARGO:"
-                   "\n                               [1] GERENTE | [2] OPERADOR DE CAIXA | [3] ESTOQUISTA"
-                   "\n                               Digite o número correspondente ao cargo escolhido: "
-                   "\n                                         Cargo: %s", pessoa.cargo,
-                   "\n\n                                                     DOCUMENTOS:"
-                   "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-                   "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-                   "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
+            printf(  "\n                                          #===============================#                                             \n"
+                       "                                          |           CADASTRO            |                                             \n"
+                       "                                          #===============================#                                             \n"
                    "\n\n                                                      ENDEREÇO:"
-                   "\n                                           Rua: %s", pessoa.endereco.rua,
-                   "\n                                        Número: %s", pessoa.endereco.num_resid,
-                   "\n                                        Bairro: %s", pessoa.endereco.bairro,
-                   "\n                                CEP(00000-000): %s", pessoa.endereco.cep);
+                     "\n                                           Rua: %s", pessoa.endereco.rua);
+            printf(  "\n                                        Número: %s", pessoa.endereco.num_resid);
+            printf(  "\n                                        Bairro: %s", pessoa.endereco.bairro);
+            printf(  "\n                                CEP(00000-000): %s", pessoa.endereco.cep);
         }else{
             break; //Sai do loop se o nome for válido.
         }
@@ -716,38 +660,39 @@ void NovoCadastro(){
 
     case 2:
         telaLimpa();
-        printf("\n                                          #===============================#                                             \n"
-             "                                          |           CADASTRO            |                                             \n"
-             "                                          #===============================#                                             \n"
-             "                                                                                                                        \n"
-             "                                            ID: %i", pessoa.ID,
-           "\n\n                                                  DADOS DO USUÁRIO:"
-           "\n                                          Nome: %s", pessoa.nome,
-           "\n                                       Usuário: %s", pessoa.login.usuario,
-           "\n                                         Senha: %s", senha1,
-           "\n                                        e-mail: %s", pessoa.email,
-           "\n\n                                                       CARGO:"
-           "\n                                         Cargo: %s", pessoa.cargo,
-           "\n\n                                                     DOCUMENTOS:"
-           "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc,
-           "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf,
-           "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg,
-           "\n\n                                                      ENDEREÇO:"
-           "\n                                           Rua: %s", pessoa.endereco.rua,
-           "\n                                        Número: %s", pessoa.endereco.num_resid,
-           "\n                                        Bairro: %s", pessoa.endereco.bairro,
-           "\n                                CEP(00000-000): %s", pessoa.endereco.cep,
-           "\n                                   Complemento: %s", pessoa.endereco.complemento,
-           "\n\n                                                    INFORMAÇÕES: \n"
-           "\n\n                                                  DADOS DO USUÁRIO:"
-           "\n                                     [1] Nome | [2] Usuário | [3] Senha | [4] e-mail"
-           "\n\n                                                       CARGO:"
-           "\n                                                       [5] cargo"
-           "\n\n                                                     DOCUMENTOS:"
-           "\n                                         [6] Data Nascimento | [7] CPF | [8] RG"
-           "\n\n                                                      ENDEREÇO:"
-           "\n                             [9] Rua | [10] Número | [11] Bairro | [12] CEP | [13] Complemento"
-           "\n\n                                          Qual informação deseja editar: \n");
+        printf(  "\n                                          #===============================#                                             \n"
+                   "                                          |           CADASTRO            |                                             \n"
+                   "                                          #===============================#                                             \n"
+                   "                                                                                                                        \n"
+                   "                                            ID: %i", pessoa.ID);
+        printf("\n\n                                                  DADOS DO USUÁRIO:"
+                 "\n                                          Nome: %s", pessoa.nome);
+        printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
+        printf(  "\n                                         Senha: %s", senha1);
+        printf(  "\n                            Confirme sua senha: %s", senha2);
+        printf(  "\n                                        e-mail: %s", pessoa.email);
+        printf("\n\n                                                       CARGO:"
+                 "\n                                         Cargo: %s", pessoa.cargo);
+        printf("\n\n                                                     DOCUMENTOS:"
+                 "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
+        printf(  "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf);
+        printf(  "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg);
+        printf("\n\n                                                      ENDEREÇO:"
+                 "\n                                           Rua: %s", pessoa.endereco.rua);
+        printf(  "\n                                        Número: %s", pessoa.endereco.num_resid);
+        printf(  "\n                                        Bairro: %s", pessoa.endereco.bairro);
+        printf(  "\n                                CEP(00000-000): %s", pessoa.endereco.cep);
+        printf(  "\n                                   Complemento: %s", pessoa.endereco.complemento);
+        printf("\n\n                                                    INFORMAÇÕES: \n"
+               "\n\n                                                  DADOS DO USUÁRIO:"
+                 "\n                                     [1] Nome | [2] Usuário | [3] Senha | [4] e-mail"
+               "\n\n                                                       CARGO:"
+                 "\n                                                       [5] cargo"
+               "\n\n                                                     DOCUMENTOS:"
+                 "\n                                         [6] Data Nascimento | [7] CPF | [8] RG"
+               "\n\n                                                      ENDEREÇO:"
+                 "\n                             [9] Rua | [10] Número | [11] Bairro | [12] CEP | [13] Complemento"
+               "\n\n                                          Qual informação deseja editar: \n");
         int opcao;
         scanf("%i", opcao);
         fflush(stdin);

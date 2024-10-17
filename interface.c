@@ -6,7 +6,7 @@
 #include "cadastros.h"
 
 void telaTamanho(){
-    system("MODE con cols=168 lines=60");// configura a quantidad de colunas e linhas que o console terá;
+    system("MODE con cols=168 lines=200");// configura a quantidad de colunas e linhas que o console terá;
 }
 
 void telaLimpa(){
@@ -66,10 +66,10 @@ void telaLogin(){
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    char usuario[TAM_user], ent_senha, senha[TAM_user];
-    int comparador;
+    Pessoa pessoa;
 
-    do{
+    while (1) {
+        // Exibe o campo de entrada do usuário
         printf("\n\n\n\n\n\n\n"
                "\n                                         ");
         SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_INTENSITY);
@@ -94,35 +94,49 @@ void telaLogin(){
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(" ");
 
-        gets(usuario);
-        fflush(stdin);
+        // Campo de entrada do usuário
+        fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
+        pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; // Remove caractere de nova linha.
 
+        if (strlen(pessoa.login.usuario) == 0) {
+            printf(RED "\n\n                                     [!] O campo usuário não pode estar vazio!\a" RESET);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            continue; // Reinicia o loop se o campo estiver vazio
+        }
+
+        // Exibe o campo de entrada da senha
         printf("\n                                                ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
         printf(                                                " Senha: ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(" ");
 
-        mascSenha(ent_senha, &senha);
-        fflush(stdin);
+        char senha1[TAM_user] = {0}; // Inicializa a senha
+        mascSenha('\0', senha1); // Função para mascarar a entrada da senha
 
-        verificaLogin(usuario, senha, &comparador);
-
-        if(comparador == 1){
-            bold(1);
-            printf(RED "\n\n\t\t\t\t\t\t  [!] Login incorreto!\n"
-                       "\t\t\t\t\t   Usuário ou senha estão incorretos!\a");
-            bold(0);
+        if (strlen(senha1) == 0) {
+            printf(RED "\n\n                                      [!] O campo senha não pode estar vazio!\a" RESET);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-        }else{
-            telaLimpa();
-            telaMenuAdmin();
-            break;
+            continue; // Reinicia o loop se o campo estiver vazio
         }
 
-    }while(comparador == 1);
+        // Verifica login
+        if (verificaLogin(pessoa.login.usuario, senha1)){
+            telaLimpa();
+            telaMenuAdmin(); // Chama a tela do menu do administrador
+            break; // Sai do loop se o login for bem-sucedido
+        }else{
+            printf(RED "\n\n\t\t\t\t\t\t  [!] Login incorreto!\n"
+                       "\t\t\t\t\t   Usuário ou senha estão incorretos!\a" RESET);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+        }
+    }
 }
 
 void telaMenuAdmin(){

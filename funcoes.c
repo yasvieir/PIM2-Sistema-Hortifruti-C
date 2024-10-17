@@ -1,24 +1,54 @@
 #include "funcoes.h"
 
-void verificaLogin(char ent_usuario[], char ent_senha[], int *comparador){
+int verificaLogin(char *ent_usuario, char *ent_senha){
 
-    char usuario[TAM_user] = {"admin"},
-         senha[TAM_user] = {"admin123"};
-    int compUsuario, compSenha;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
 
-    compUsuario = strcmp(usuario, ent_usuario);
-    compSenha = strcmp(senha, ent_senha);
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
 
-    if(compUsuario == 0 && compSenha == 0){
-        *comparador = 0;
-    }else{
-        *comparador = 1;
+    Pessoa pessoa;
+
+    FILE *arquivo = fopen("cadastros.bin", "rb");
+    if (arquivo == NULL){
+        //Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
+        arquivo = fopen("cadastros.bin", "wb");
+        if(arquivo == NULL){
+            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!"); bold(1);
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            return;
+            }
+            //Cria cadastro do Administrador.
+            pessoa.ID = 0;
+            strcpy(pessoa.nome, "Administrador\0");
+            strcpy(pessoa.login.usuario, "admin\0");
+            strcpy(pessoa.login.senha, "admin123\0");
+            strcpy(pessoa.cargo, "ADMINISTRADOR\0");
+
+            //Escreve cadastro Administrador no arquivo.
+            fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
+
+            fclose(arquivo);
     }
+
+    while (fread(&pessoa, sizeof(Pessoa), 1, arquivo)) {
+        if (pessoa.ID != 1 && strcmp(pessoa.login.usuario, ent_usuario) == 0 && strcmp(pessoa.login.senha, ent_senha) == 0) {
+            fclose(arquivo);
+            return 1; // Usuário encontrado.
+        }
+    }
+    fclose(arquivo);
+    return 0; // Usuário não encontrado.
 }
 
 void mascSenha(char ent_senha, char *senha[TAM_user]){
 
-    char senha_usuario[TAM_user] = {0};
+    char senha_usuario[TAM_user] = "0";
     int pos = 0;
     int comparador;
 
