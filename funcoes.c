@@ -1,7 +1,6 @@
 #include "funcoes.h"
 
-int verificaLogin(char *ent_usuario, char *ent_senha){
-
+int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
     WORD saved_attributes;
@@ -13,32 +12,35 @@ int verificaLogin(char *ent_usuario, char *ent_senha){
     Pessoa pessoa;
 
     FILE *arquivo = fopen("cadastros.bin", "rb");
-    if (arquivo == NULL){
-        //Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
+    if(arquivo == NULL){
+        // Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
         arquivo = fopen("cadastros.bin", "wb");
         if(arquivo == NULL){
-            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!"); bold(1);
+            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+            bold(1);
             bold(0);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
-            return;
-            }
-            //Cria cadastro do Administrador.
-            pessoa.ID = 0;
-            strcpy(pessoa.nome, "Administrador\0");
-            strcpy(pessoa.login.usuario, "admin\0");
-            strcpy(pessoa.login.senha, "admin123\0");
-            strcpy(pessoa.cargo, "ADMINISTRADOR\0");
+            return 0; // Retorna 0 em caso de erro
+        }
+        // Cria cadastro do Administrador.
+        pessoa.ID = 0;
+        strcpy(pessoa.nome, "Administrador");
+        strcpy(pessoa.login.usuario, "admin");
+        strcpy(pessoa.login.senha, "admin123");
+        strcpy(pessoa.cargo, "ADMINISTRADOR");
 
-            //Escreve cadastro Administrador no arquivo.
-            fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
-
-            fclose(arquivo);
+        // Escreve cadastro Administrador no arquivo.
+        fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
+        fclose(arquivo);
     }
 
+    // Reabre o arquivo para leitura
+    arquivo = fopen("cadastros.bin", "rb");
     while (fread(&pessoa, sizeof(Pessoa), 1, arquivo)) {
-        if (pessoa.ID != 1 && strcmp(pessoa.login.usuario, ent_usuario) == 0 && strcmp(pessoa.login.senha, ent_senha) == 0) {
+        if (strcmp(pessoa.login.usuario, ent_usuario) == 0 && strcmp(pessoa.login.senha, ent_senha) == 0) {
             fclose(arquivo);
+            strcpy(cargo, pessoa.cargo); // Armazena o cargo do usuário
             return 1; // Usuário encontrado.
         }
     }
