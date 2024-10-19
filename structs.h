@@ -9,7 +9,7 @@
 #define TAM_cep 10
 #define TAM_cpf 15
 #define TAM_rg 13
-#define TAM_cargo 11
+#define TAM_cargo 18
 #define TAM_nasc 11
 
 typedef struct login_pessoa{
@@ -21,8 +21,8 @@ typedef struct endereco_pessoa{
     char rua[TAM_nome],
          bairro[TAM_nome],
          cep[TAM_cep],
-         complemento[TAM_comp];
-    int num_resid;
+         complemento[TAM_comp],
+         num_resid[TAM_comp];
 }Endereco;
 
 typedef struct documentos_pessoa{
