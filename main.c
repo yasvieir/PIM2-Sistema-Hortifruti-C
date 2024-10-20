@@ -18,7 +18,6 @@ int main(int argc, char *argv[]){
 
     telaTamanho();
     telaEstilo();
-    TelaCadastro();
     telaInicio();
 
     return 0;

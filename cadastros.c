@@ -92,10 +92,11 @@ void TelaCadastro(){
             break;
         case 4:
             telaLimpa();
-            DadosUsuario();
+            animacao_de_saida();
             break;
         case 0:
             telaLimpa();
+            return 1;
             break;
         default :
             printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!"); bold(1);
@@ -1385,7 +1386,7 @@ void NovoCadastro(){
     switch(escolha){
     case 1:
         //Abre arquivo para escrita binária.
-        arquivo = fopen("cadastros.bin", "wb");
+        arquivo = fopen("cadastros.bin", "ab");
 
         //Verifica se o arquivo foi encontrado.
         if(arquivo == NULL){

@@ -25,10 +25,10 @@ int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
         }
         // Cria cadastro do Administrador.
         pessoa.ID = 0;
-        strcpy(pessoa.nome, "Administrador");
-        strcpy(pessoa.login.usuario, "admin");
-        strcpy(pessoa.login.senha, "admin123");
-        strcpy(pessoa.cargo, "ADMINISTRADOR");
+        strcpy(pessoa.nome, "Administrador\0");
+        strcpy(pessoa.login.usuario, "admin\0");
+        strcpy(pessoa.login.senha, "admin123\0");
+        strcpy(pessoa.cargo, "ADMINISTRADOR\0");
 
         // Escreve cadastro Administrador no arquivo.
         fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
