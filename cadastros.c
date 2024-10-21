@@ -169,17 +169,15 @@ void NovoCadastro(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(  "                                                                                                                      \n"
-             "                                             ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(  " ID: ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+    printf(  "                                                       ID: ");
 
     // Gera um novo ID incremental.
     pessoa.ID = gerarID();
     //Mostra ID atual.
-    printf(" %i", pessoa.ID);
-
+    printf(                                                              " %i                                                         ", pessoa.ID);
+    SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n\n");
     printf(" ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
@@ -217,12 +215,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -262,12 +259,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -299,12 +295,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -355,12 +350,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -416,12 +410,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -469,12 +462,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -525,12 +517,11 @@ void NovoCadastro(){
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
                     printf(  "                                                                                                                      \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(  "                                                                                                                      \n"
-                             "                                             ");
-                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-                    printf(                                                " ID: ");
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+                    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(                                                      " %i\n\n ", pessoa.ID);
+                    printf("\n\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
                     printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -586,12 +577,11 @@ void NovoCadastro(){
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
                     printf(  "                                                                                                                      \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(  "                                                                                                                      \n"
-                             "                                             ");
-                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-                    printf(                                                " ID: ");
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+                    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(                                                      " %i\n\n ", pessoa.ID);
+                    printf("\n\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
                     printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -639,7 +629,7 @@ void NovoCadastro(){
 
         if(strlen(pessoa.email) == 0){
             bold(1);
-            printf(RED "\n\n\t\t\t [!] O campo e-mail não pode estar vazio!\a");
+            printf(RED "\n\n\t\t\t\t\t\t [!] O campo e-mail não pode estar vazio!\a");
             bold(0);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
@@ -656,12 +646,11 @@ void NovoCadastro(){
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
                     printf(  "                                                                                                                      \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(  "                                                                                                                      \n"
-                             "                                             ");
-                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-                    printf(                                                " ID: ");
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+                    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
-                    printf(                                                      " %i\n\n ", pessoa.ID);
+                    printf("\n\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
                     printf(  "                                                   DADOS DO USUÁRIO:                                                  \n");
                     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -704,12 +693,11 @@ void NovoCadastro(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(  "                                                                                                                      \n"
-             "                                             ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                                                " ID: ");
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                                      " %i\n\n ", pessoa.ID);
+    printf("\n\n ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
     printf(  "                                                        CARGO:                                                       \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -755,12 +743,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                        CARGO:                                                       \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -784,12 +771,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                        CARGO:                                                        \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -836,12 +822,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                         CARGO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -889,12 +874,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                         CARGO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -917,9 +901,9 @@ void NovoCadastro(){
     }
     //Campo de inserção - RG:
     while(1){
-        printf("\n                                ");
+        printf("\n                               ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                   " RG(00.000.000-0: ");
+        printf(                                  " RG(00.000.000-0): ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(" ");
 
@@ -947,12 +931,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                         CARGO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -993,15 +976,15 @@ void NovoCadastro(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(  "                                                                                                                      \n"
-             "                                             ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                                                " ID: ");
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                                      " %i\n\n ", pessoa.ID);
+    printf("\n\n ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
     printf(  "                                                      ENDEREÇO:                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
+
     while(1){
         printf("\n                                            ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
@@ -1033,12 +1016,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                      ENDEREÇO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1078,12 +1060,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                      ENDEREÇO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1128,12 +1109,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                      ENDEREÇO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1183,12 +1163,11 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                      ENDEREÇO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1242,16 +1221,15 @@ void NovoCadastro(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(  "                                                                                                                      \n"
-                     "                                             ");
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                                " ID: ");
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf(                                                      " %i\n\n ", pessoa.ID);
+            printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                      ENDEREÇO:                                                      \n");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf("\n                                            ");
+            printf("\n\n                                            ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
             printf(                                               " Rua: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1266,9 +1244,9 @@ void NovoCadastro(){
             printf(                                            " Bairro: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf(                                                      " %s\n", pessoa.endereco.bairro);
-            printf("\n                                 ");
+            printf("\n                                            ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-            printf(                                    " CEP(00000-000):");
+            printf(                                               " CEP: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf(                                                     " %s\n", pessoa.endereco.cep);
         }else{
@@ -1290,13 +1268,15 @@ void NovoCadastro(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(  "                                                                                                                      \n"
-             "                                             ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                                                " ID: ");
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+    printf(  "                                                       ID: %i                                                          ", pessoa.ID);
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                                      " %i\n", pessoa.ID);
-    printf("\n                                           ");
+    printf("\n\n                                               ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+    printf(                                                 "   DADOS DO USUÁRIO   ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\n                                           ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
     printf(                                              " Nome: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1310,7 +1290,7 @@ void NovoCadastro(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
     printf(                                             " Senha: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                                      " %s\n", senha1);
+    printf(                                                      " %s\n", pessoa.login.senha);
     printf("\n                                         ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
     printf(                                            " E-mail: ");
@@ -1322,7 +1302,11 @@ void NovoCadastro(){
     printf(                                             " Cargo: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf(                                                      " %s\n", pessoa.cargo);
-    printf("\n                             ");
+    printf("\n                                                   ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+    printf(                                                      "   DOCUMENTOS   ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\n                             ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
     printf(                                " Data de Nascimento: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1337,7 +1321,11 @@ void NovoCadastro(){
     printf(                                                " RG: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf(                                                      " %s\n", pessoa.documentos.rg);
-    printf("\n                                            ");
+    printf("\n                                                    ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+    printf(                                                       "   ENDEREÇO   ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\n                                            ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
     printf(                                               " Rua: ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1424,286 +1412,12 @@ void NovoCadastro(){
 
     case 2:
         telaLimpa();
-        printf(  "\n                                          #===============================#                                             \n"
-                   "                                          |           CADASTRO            |                                             \n"
-                   "                                          #===============================#                                             \n"
-                   "                                                                                                                        \n"
-                   "                                            ID: %i", pessoa.ID);
-        printf("\n\n                                                  DADOS DO USUÁRIO:"
-                 "\n                                          Nome: %s", pessoa.nome);
-        printf(  "\n                                       Usuário: %s", pessoa.login.usuario);
-        printf(  "\n                                         Senha: %s", senha1);
-        printf(  "\n                            Confirme sua senha: %s", senha2);
-        printf(  "\n                                        e-mail: %s", pessoa.email);
-        printf("\n\n                                                       CARGO:"
-                 "\n                                         Cargo: %s", pessoa.cargo);
-        printf("\n\n                                                     DOCUMENTOS:"
-                 "\n                Data de Nascimento(00/00/0000): %s", pessoa.nasc);
-        printf(  "\n                           CPF(000.000.000/00): %s", pessoa.documentos.cpf);
-        printf(  "\n                               RG(00.000.000-0: %s", pessoa.documentos.rg);
-        printf("\n\n                                                      ENDEREÇO:"
-                 "\n                                           Rua: %s", pessoa.endereco.rua);
-        printf(  "\n                                        Número: %s", pessoa.endereco.num_resid);
-        printf(  "\n                                        Bairro: %s", pessoa.endereco.bairro);
-        printf(  "\n                                CEP(00000-000): %s", pessoa.endereco.cep);
-        printf(  "\n                                   Complemento: %s", pessoa.endereco.complemento);
-        printf("\n\n                                                    INFORMAÇÕES: \n"
-               "\n\n                                                  DADOS DO USUÁRIO:"
-                 "\n                                     [1] Nome | [2] Usuário | [3] Senha | [4] e-mail"
-               "\n\n                                                       CARGO:"
-                 "\n                                                       [5] cargo"
-               "\n\n                                                     DOCUMENTOS:"
-                 "\n                                         [6] Data Nascimento | [7] CPF | [8] RG"
-               "\n\n                                                      ENDEREÇO:"
-                 "\n                             [9] Rua | [10] Número | [11] Bairro | [12] CEP | [13] Complemento"
-               "\n\n                                          Qual informação deseja editar: \n");
-        int opcao;
-        scanf("%i", opcao);
-        fflush(stdin);
-
-        telaLimpa();
-        printf("\n\n\n\n\n\n\n"
-               "\n                                          #===============================#                                             \n"
-                 "                                          |            EDITAR             |                                             \n"
-                 "                                          #===============================#                                             \n"
-                 "                                                                                                                        \n");
-
-        switch(opcao){
-        case 1:
-            //Campo de inserção - Nome:
-            while(1){
-                printf("\n                                          Nome: ");
-                fgets(pessoa.nome, sizeof(pessoa.nome), stdin);
-                pessoa.nome[strcspn(pessoa.nome, "\n")] = 0; //Remove caractere de nova linha.
-                fflush(stdin);
-
-                if(strlen(pessoa.nome) == 0){
-                    bold(1);
-                    printf(RED "\n\n                                       [!] O campo nome não pode estar vazio!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n\n\n\n\n\n\n"
-                           "\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n");
-                }else{
-                    break; //Sai do loop se o nome for válido
-                }
-            }
-
-            //Mensagem de alteração realizada.
-            bold(1);
-            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-
-            telaLimpa();
-            break;
-        case 2:
-            //Campo de Inserção - Usuário:
-            while(1){
-                printf("\n                                       Usuário: ");
-                fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
-                pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; //Remove caractere de nova linha.
-                fflush(stdin);
-
-                while(usuarioExiste(pessoa.login.usuario)){
-                    printf("\n\n                              [!] O Usuário já existe, por favor escolha outro!\a");
-                    printf("\n                                       Usuário: ");
-                    fgets(pessoa.login.usuario, sizeof(pessoa.login.usuario), stdin);
-                    pessoa.login.usuario[strcspn(pessoa.login.usuario, "\n")] = 0; //Remove caractere de nova linha.
-                    fflush(stdin);
-
-                }
-
-                if(strlen(pessoa.login.usuario) == 0){
-                    bold(1);
-                    printf(RED "\n\n                                     [!] O campo usuário não pode estar vazio!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n\n\n\n\n\n\n"
-                           "\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n");
-                }else{
-                    break; //Sai do loop se o nome for válido
-                }
-            }
-
-            //Mensagem de alteração realizada.
-            bold(1);
-            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-
-            telaLimpa();
-            break;
-        case 3:
-            //Campo de insersão - Senha:
-            while(1){
-                printf("\n                                         Senha: ");
-
-                fflush(stdin);
-
-                if(strlen(senha1) == 0){
-                    bold(1);
-                    printf(RED "\n\n                                      [!] O campo senha não pode estar vazio!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n");
-
-                }else{
-                    break; //Sai do loop se o nome for válido
-                }
-            }
-            //Campo de insersão - Confirmação de Senha:
-            while(1){
-                printf("\n                            Confirme sua senha: ");
-
-                fflush(stdin);
-
-                if(strlen(senha2) == 0){
-                    bold(1);
-                    printf(RED "\n\n                               [!] O campo confirme sua senha não pode estar vazio!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n"
-                           "\n                                         Senha: %s", senha1);
-                }else{
-                    break; //Sai do loop se o nome for válido
-                }
-            }
-            int comparador;
-            //Verifica se senhas são iguais:
-            verificaSenhas(senha1, senha2, &comparador);
-            if(comparador == 1){
-                do{
-                    bold(1);
-                    printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n");
-                    //Campo de insersão - Senha:
-                    while(1){
-                        printf("\n                                         Senha: ");
-
-                        fflush(stdin);
-
-                        if(strlen(senha1) == 0){
-                            bold(1);
-                            printf(RED "\n\n                                      [!] O campo senha não pode estar vazio!\a");
-                            bold(0);
-                            SetConsoleTextAttribute(hConsole, saved_attributes);
-                            Sleep(800);
-                            telaLimpa();
-                            printf("\n                                          #===============================#                                             \n"
-                                     "                                          |            EDITAR             |                                             \n"
-                                     "                                          #===============================#                                             \n"
-                                     "                                                                                                                        \n");
-
-                        }else{
-                            break; //Sai do loop se o nome for válido
-                        }
-                    }
-                    //Campo de insersão - Confirmação de Senha:
-                    while(1){
-                        printf("\n                            Confirme sua senha: ");
-
-                        fflush(stdin);
-
-                        if(strlen(senha2) == 0){
-                            bold(1);
-                            printf(RED "\n\n                               [!] O campo confirme sua senha não pode estar vazio!\a");
-                            bold(0);
-                            SetConsoleTextAttribute(hConsole, saved_attributes);
-                            Sleep(800);
-                            telaLimpa();
-                            printf("\n                                          #===============================#                                             \n"
-                                     "                                          |            EDITAR             |                                             \n"
-                                     "                                          #===============================#                                             \n"
-                                     "                                                                                                                        \n"
-                                   "\n                                         Senha: %s", senha1);
-                        }else{
-                            break; //Sai do loop se o nome for válido
-                        }
-                    }
-                }while(comparador == 1);
-            }else{
-                senha1[strcspn(senha1, "\n")] = 0;
-                strcpy(pessoa.login.senha, senha1);
-            }
-
-            //Mensagem de alteração realizada.
-            bold(1);
-            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-
-            telaLimpa();
-            break;
-        case 4:
-            //Campo de Inserção - E-mail:
-            while(1){
-                printf("\n                                         e-mail: ");
-                fgets(pessoa.email, sizeof(pessoa.email), stdin);
-                pessoa.email[strcspn(pessoa.email, "\n")] = 0; //Remove caractere de nova linha.
-                fflush(stdin);
-
-                if(strlen(pessoa.email) == 0){
-                    bold(1);
-                    printf(RED "\n\n\t\t\t [!] O campo e-mail não pode estar vazio!\a");
-                    bold(0);
-                    SetConsoleTextAttribute(hConsole, saved_attributes);
-                    Sleep(800);
-                    telaLimpa();
-                    printf("\n                                          #===============================#                                             \n"
-                             "                                          |            EDITAR             |                                             \n"
-                             "                                          #===============================#                                             \n"
-                             "                                                                                                                        \n");
-
-                }else{
-                    break; //Sai do loop se o nome for válido
-                }
-            }
-
-            //Mensagem de alteração realizada.
-            bold(1);
-            printf(GREEN "\n\n                                          Alteração realizada com sucesso!\a\a");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-
-            telaLimpa();
         break;
-        }
     case 3:
         telaLimpa();
         TelaCadastro();
-        }
+        break;
+    }
 }
 
 void ListarCadastros(){
@@ -1751,9 +1465,9 @@ void ListarCadastros(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf("\n\n                                                 ");
+            printf("\n\n                                               ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
-            printf(                                                  "   DADOS PESSOAIS   ");
+            printf(                                                "   DADOS DO USUÁRIO   ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n                                           ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
