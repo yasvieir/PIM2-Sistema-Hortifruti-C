@@ -92,7 +92,12 @@ void TelaCadastro(){
             break;
         case 4:
             telaLimpa();
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
             animacao_de_saida();
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+
+            telaLimpa();
+            telaSaida();
             break;
         case 0:
             telaLimpa();
@@ -1703,6 +1708,124 @@ void NovoCadastro(){
 
 void ListarCadastros(){
 
+    system("title Lista de Cadastros");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    Pessoa pessoa;
+    FILE *arquivo;
+
+    //Abre o arquivo pra pesquisa binária.
+    arquivo = fopen("cadastros.bin", "rb"); //Modo "rb" pra leitura binária.
+    if(arquivo == NULL){
+        printf(RED "\n\n                                                [ERRO:] Nenhum cadastro encontrado!"); bold(1);
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        return;
+    }
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                 LISTA DE CADASTROS                                                   \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+
+    //Lê os dados do arquivo binário.
+    while(fread(&pessoa, sizeof(pessoa), 1, arquivo) == 1){
+        if(pessoa.ID != 0){ // Pula a impressão do usuário administrador.
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", pessoa.ID);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n                                           ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                              " Nome: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.nome);
+            printf("\n                                        ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                           " Usuário: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.login.usuario);
+            printf("\n                                          ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                             " Senha: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.login.senha);
+            printf("\n                                         ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                            " E-mail: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.email);
+            printf(" ");
+            printf("\n                                          ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                             " Cargo: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.cargo);
+            printf("\n                             ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                " Data de Nascimento: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.nasc);
+            printf("\n                                            ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                               " CPF: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.documentos.cpf);
+            printf("\n                                             ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                                " RG: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.documentos.rg);
+            printf("\n                                            ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                               " Rua: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.endereco.rua);
+            printf("\n                                         ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                            " Número: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.endereco.num_resid);
+            printf("\n                                         ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                            " Bairro: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", pessoa.endereco.bairro);
+            printf("\n                                            ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                               " CEP: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                     " %s\n", pessoa.endereco.cep);
+            printf("\n                                    ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                       " Complemento: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                     " %s\n", pessoa.endereco.complemento);
+
+        }
+        printf("\n");
+    }
+
+    //Fecha o arquivo.
+    fclose(arquivo);
+    telaPause();
+    return;
 }
 
 void EditarCadastro(){
