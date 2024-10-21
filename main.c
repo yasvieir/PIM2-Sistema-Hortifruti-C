@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 
     setlocale(LC_ALL, "Portuguese"); /* Definindo configuração padrão do sistema */
 
-    //telaTamanho();
+    telaTamanho();
     telaEstilo();
     telaInicio();
 

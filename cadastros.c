@@ -1751,6 +1751,10 @@ void ListarCadastros(){
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
             printf(  "                                                       ID: %i                                                          ", pessoa.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n                                                 ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+            printf(                                                  "   DADOS PESSOAIS   ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n                                           ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
             printf(                                              " Nome: ");
@@ -1777,7 +1781,11 @@ void ListarCadastros(){
             printf(                                             " Cargo: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf(                                                      " %s\n", pessoa.cargo);
-            printf("\n                             ");
+            printf("\n                                                   ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+            printf(                                                      "   DOCUMENTOS   ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n                             ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
             printf(                                " Data de Nascimento: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1792,7 +1800,11 @@ void ListarCadastros(){
             printf(                                                " RG: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf(                                                      " %s\n", pessoa.documentos.rg);
-            printf("\n                                            ");
+            printf("\n                                                    ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY | BACKGROUND_GREEN);
+            printf(                                                       "   ENDEREÇO   ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n                                            ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
             printf(                                               " Rua: ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -1824,6 +1836,20 @@ void ListarCadastros(){
 
     //Fecha o arquivo.
     fclose(arquivo);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                             PRESSIONE ENTER PARA VOLTAR                                              ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
     telaPause();
     return;
 }
