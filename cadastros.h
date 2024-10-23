@@ -3,11 +3,15 @@
 
 void TelaCadastro();
 
+void ListarCadastro(Pessoa pessoa);
+
 void NovoCadastro();
 
 void ListarCadastros();
 
-void EditarCadastros();
+void BuscaCadastro();
+
+void EditarCadastro(Pessoa pessoa);
 
 void DadosUsuario();
 

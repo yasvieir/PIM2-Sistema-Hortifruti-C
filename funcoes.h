@@ -17,4 +17,6 @@ void verificaSenhas(char ent_senha1[], char ent_senha2[], int *comparador);
 
 void exibirSenhaMascarada(const char *senha);
 
+Pessoa buscarCadastroPorID(int id);
+
 #endif // FUNCOES_H_INCLUDED

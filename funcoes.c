@@ -145,3 +145,33 @@ void verificaSenhas(char ent_senha1[], char ent_senha2[], int *comparador){
         *comparador = 1;
     }
 }
+
+Pessoa buscarCadastroPorID(int id){
+    FILE *arquivo;
+    Pessoa cadastro;
+    int encontrado = 0;
+
+    //Abre o arquivo para leitura.
+    arquivo = fopen("cadastros.bin", "rb");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo.\n");
+        return cadastro; //Retorna um cadastro vazio em caso de erro.
+    }
+
+    //Lê os cadastros até encontrar o ID
+    while(fread(&cadastro, sizeof(Pessoa), 1, arquivo)){
+        if (cadastro.ID == id) { //Compara com o ID de entrada, não Pessoa.ID.
+            encontrado = 1;
+            break; //Encerra o loop se o ID for encontrado.
+        }
+    }
+
+    fclose(arquivo); //Fecha o arquivo.
+
+    if(!encontrado){
+        printf("Cadastro não encontrado para o ID: %d\n", id); //Usa o ID de entrada, não ID.
+        cadastro.ID = -1; //Indica que não foi encontrado.
+    }
+
+    return cadastro; //Retorna o cadastro encontrado ou vazio.
+}
