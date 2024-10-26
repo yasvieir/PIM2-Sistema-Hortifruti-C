@@ -213,14 +213,6 @@ void telaMenuAdmin(){
         SetConsoleTextAttribute(hConsole, saved_attributes);
 
         switch(escolha){
-        case 1:
-            telaLimpa();
-            telaGerente();
-            break;
-        case 2:
-            telaLimpa();
-            telaFuncionario();
-            break;
         case 0:
             telaLimpa();
             SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
@@ -229,6 +221,14 @@ void telaMenuAdmin(){
 
             telaLimpa();
             telaSaida();
+            break;
+        case 1:
+            telaLimpa();
+            telaGerente();
+            break;
+        case 2:
+            telaLimpa();
+            telaFuncionario();
             break;
         default :
             bold(1);
@@ -312,6 +312,15 @@ void telaGerente(){
         SetConsoleTextAttribute(hConsole, saved_attributes);
 
         switch(escolha){
+        case 0:
+            telaLimpa();
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
+            animacao_de_saida();
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+
+            telaLimpa();
+            telaSaida();
+            break;
         case 1:
             telaLimpa();
             TelaCadastro();
@@ -364,6 +373,15 @@ void telaFuncionario(){
         fflush(stdin);
 
         switch(escolha){
+        case 0:
+            telaLimpa();
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
+            animacao_de_saida();
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+
+            telaLimpa();
+            telaSaida();
+            break;
         case 1:
             telaLimpa();
 
@@ -375,10 +393,6 @@ void telaFuncionario(){
         case 3:
             telaLimpa();
 
-            break;
-        case 0:
-            telaLimpa();
-            telaSaida();
             break;
         default :
             bold(1);
@@ -472,7 +486,7 @@ void telaSaida(){
             break;
         case 0:
             telaLimpa();
-            return 0;
+            exit(0); // Encerra o programa com sucesso.
             break;
         default :
             bold(1);
