@@ -1912,8 +1912,6 @@ void EditarCadastro(Pessoa pessoa){
                     Sleep(1000);
                     telaLimpa();
 
-                    telaLimpa();
-
                     printf("\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
                     printf(  "                                                                                                                      \n");
@@ -1962,8 +1960,6 @@ void EditarCadastro(Pessoa pessoa){
                     bold(0);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     Sleep(1000);
-                    telaLimpa();
-
                     telaLimpa();
 
                     printf("\n ");
@@ -2053,8 +2049,6 @@ void EditarCadastro(Pessoa pessoa){
                             Sleep(1000);
                             telaLimpa();
 
-                            telaLimpa();
-
                             printf("\n ");
                             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
                             printf(  "                                                                                                                      \n");
@@ -2103,8 +2097,6 @@ void EditarCadastro(Pessoa pessoa){
                             bold(0);
                             SetConsoleTextAttribute(hConsole, saved_attributes);
                             Sleep(1000);
-                            telaLimpa();
-
                             telaLimpa();
 
                             printf("\n ");
@@ -3221,6 +3213,366 @@ void EditarCadastro(Pessoa pessoa){
 
 void DadosUsuario(){
 
-    ListarCadastro(usuarioLogado);
+    system("title Informações");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    int escolha;
+
+    do{
+        printf("\n\n\n\n\n\n\n"
+               "\n                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "             INFORMAÇÕES            ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [0] - Voltar                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [1] - Dados do Usuário          ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [2] - Alterar Senha             ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           " Escolha uma opção para continuar: ");
+
+        scanf("%i", &escolha);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        switch(escolha){
+        case 0:
+            telaLimpa();
+            return;
+            break;
+        case 1:
+            telaLimpa();
+            InfoUser();
+            break;
+        case 2:
+            telaLimpa();
+            AlteraSenha(usuarioLogado);
+            break;
+        default :
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+        }
+        telaLimpa();
+    }while(escolha != 0);
+    telaLimpa();
+}
+
+void InfoUser(){
+
+    system("title Informações do Usuário");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                  DADOS DO USUÁRIO                                                    \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
+    int ID_pessoa = usuarioLogado.ID;
+
+    Pessoa pessoa = buscarCadastroPorID(ID_pessoa);
+
+    ListarCadastro(pessoa);
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                             PRESSIONE ENTER PARA VOLTAR                                              ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
     telaPause();
+    return;
+}
+
+void AlteraSenha(Pessoa pessoa){
+
+    system("title Alteração de Senha");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                 ALTERAÇÃO DE SENHA                                                   \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+
+    //Campo de insersão - Senha:
+    char ent_senha1, senha1[TAM_user],
+         ent_senha2, senha2[TAM_user];
+    while(1){
+        printf("\n                                          ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                             " Senha: ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+
+        ent_senha1 = '\0';
+        for (int i = 0; i < TAM_user; i++) {
+            senha1[i] = '\0';
+        }
+
+        mascSenha(ent_senha1, &senha1);
+        fflush(stdin);
+
+        if(strlen(senha1) < 8){
+            bold(1);
+            printf(RED "\n\n                             [!] A senha deve conter no mínimo 8 caracteres!\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(1000);
+            telaLimpa();
+        }else{
+            printf("\n");
+            break; //Sai do loop se o nome for válido
+        }
+    }
+    //Campo de insersão - Confirmação de Senha:
+    while(1){
+        printf("\n                             ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                " Confirme sua senha: ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+
+        ent_senha2 = '\0';
+        for (int i = 0; i < TAM_user; i++) {
+            senha2[i] = '\0';
+        }
+
+        mascSenha(ent_senha2, &senha2);
+        fflush(stdin);
+
+        if(strlen(senha2) < 8){
+            bold(1);
+            printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(1000);
+            telaLimpa();
+
+            printf("\n                                          ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                             " Senha: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", senha1);
+        }else{
+            printf("\n");
+            break; //Sai do loop se o nome for válido
+        }
+    }
+    int comparador;
+    //Verifica se senhas são iguais:
+    verificaSenhas(senha1, senha2, &comparador);
+    if(comparador == 1){
+        comparador = 0;
+        bold(1);
+        printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(1000);
+        telaLimpa();
+        do{
+            telaLimpa();
+
+            //Campo de insersão - Senha:
+            while(1){
+                printf("\n                                          ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+                printf(                                             " Senha: ");
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                printf(" ");
+
+                ent_senha1 = '\0';
+                for (int i = 0; i < TAM_user; i++) {
+                    senha1[i] = '\0';
+                }
+
+                mascSenha(ent_senha1, &senha1);
+                fflush(stdin);
+
+                if(strlen(senha1) < 8){
+                    bold(1);
+                    printf(RED "\n\n                             [!] A senha deve conter no mínimo 8 caracteres!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(1000);
+                    telaLimpa();
+                }else{
+                    printf("\n");
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+            //Campo de insersão - Confirmação de Senha:
+            while(1){
+                printf("\n                             ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+                printf(                                " Confirme sua senha: ");
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                printf(" ");
+
+                ent_senha2 = '\0';
+                for (int i = 0; i < TAM_user; i++) {
+                    senha2[i] = '\0';
+                }
+
+                mascSenha(ent_senha2, &senha2);
+                fflush(stdin);
+
+                if(strlen(senha2) < 8){
+                    bold(1);
+                    printf(RED "\n\n                                             [!] Senhas não coincidem!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(1000);
+                    telaLimpa();
+
+                    printf("\n                                          ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+                    printf(                                             " Senha: ");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf(                                                      " %s\n", senha1);
+                }else{
+                    printf("\n");
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+            //Verifica se senhas são iguais:
+            verificaSenhas(senha1, senha2, &comparador);
+            if(comparador == 1){
+                telaLimpa();
+            }
+        }while(comparador == 1);
+    }else{
+        senha2[strcspn(senha2, "\n")] = 0;
+        strcpy(pessoa.login.senha, senha2);
+
+        //Salvando as alterações no arquivo.
+        FILE *arquivo = fopen("cadastros.bin", "rb+");
+        if(arquivo != NULL){
+            //Posicionando o ponteiro no início do arquivo.
+            fseek(arquivo, 0, SEEK_SET);
+
+            Pessoa cadastro;
+            int encontrado = 0;
+
+            //Lendo os cadastros até encontrar o ID.
+            while(fread(&cadastro, sizeof(Pessoa), 1, arquivo)){
+                if (cadastro.ID == pessoa.ID) {
+                    encontrado = 1;
+                    //Posicionando o ponteiro no início do cadastro encontrado.
+                    fseek(arquivo, -sizeof(Pessoa), SEEK_CUR);
+                    //Escreva as alterações no arquivo.
+                    fwrite(&pessoa, sizeof(Pessoa), 1, arquivo);
+                    break; //Encerrando o loop se o ID for encontrado.
+                }
+            }
+
+            fclose(arquivo); //Fecha o arquivo.
+
+            if(encontrado){
+                bold(1);
+                printf(GREEN "\n\n                                             Cadastro atualizado com sucesso!");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                telaLimpa();
+                return;
+            }else{
+                bold(1);
+                printf(RED "\n\n                                                [ERRO:] Erro ao atualizar o cadastro.!");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                telaLimpa();
+                return;
+            }
+        }else{
+            bold(1);
+            printf(RED "\n\n                                                [ERRO:] Erro ao abrir o arquivo!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            return;
+        }
+    }
 }

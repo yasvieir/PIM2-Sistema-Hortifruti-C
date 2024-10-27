@@ -15,4 +15,8 @@ void EditarCadastro(Pessoa pessoa);
 
 void DadosUsuario();
 
+void InfoUser();
+
+void AlteraSenha(Pessoa pessoa);
+
 #endif // CADASTROS_H_INCLUDED

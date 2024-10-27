@@ -173,7 +173,6 @@ Pessoa buscarCadastroPorID(int id){
     fclose(arquivo); //Fecha o arquivo.
 
     if(!encontrado){
-        printf("Cadastro não encontrado para o ID: %d\n", id); //Usa o ID de entrada, não ID.
         cadastro.ID = -1; //Indica que não foi encontrado.
     }
 
