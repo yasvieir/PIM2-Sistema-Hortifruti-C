@@ -1,5 +1,7 @@
 #include "funcoes.h"
 
+Pessoa usuarioLogado; // Definindo uma estrutura global para armazenar os dados do usuário logado.
+
 int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
@@ -41,6 +43,8 @@ int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
         if (strcmp(pessoa.login.usuario, ent_usuario) == 0 && strcmp(pessoa.login.senha, ent_senha) == 0) {
             fclose(arquivo);
             strcpy(cargo, pessoa.cargo); // Armazena o cargo do usuário
+            // Pega informações do usuário
+            usuarioLogado = pessoa; // Armazena os dados do usuário logado
             return 1; // Usuário encontrado.
         }
     }

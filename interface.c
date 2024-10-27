@@ -295,6 +295,16 @@ void telaGerente(){
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [4] - Preços                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [5] - Informações               ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
         printf(                                           "    [0] - Sair                      ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
@@ -328,6 +338,16 @@ void telaGerente(){
         case 2:
             telaLimpa();
 
+            break;
+        case 3:
+            telaLimpa();
+            break;
+        case 4:
+            telaLimpa();
+            break;
+        case 5:
+            telaLimpa();
+            DadosUsuario();
             break;
         default :
             bold(1);

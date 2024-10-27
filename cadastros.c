@@ -1430,6 +1430,28 @@ void NovoCadastro(){
 
     case 2:
         telaLimpa();
+        //Abre arquivo para escrita binária.
+        arquivo = fopen("cadastros.bin", "ab");
+
+        //Verifica se o arquivo foi encontrado.
+        if(arquivo == NULL){
+            bold(1);
+            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            return;
+        }
+
+        //Escreve dados inseridos no arquivo.
+        fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
+
+        //Fecha arquivo.
+        fclose(arquivo);
+
+        //Salva o último ID.
+        salvarUltimoID(pessoa.ID);
         EditarCadastro(pessoa);
         break;
     case 3:
@@ -3199,4 +3221,6 @@ void EditarCadastro(Pessoa pessoa){
 
 void DadosUsuario(){
 
+    ListarCadastro(usuarioLogado);
+    telaPause();
 }
