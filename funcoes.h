@@ -19,4 +19,10 @@ void exibirSenhaMascarada(const char *senha);
 
 Pessoa buscarCadastroPorID(int id);
 
+int lerUltimoID_Produto();
+
+int salvarUltimoID_Produto(int ultimoID_Produto);
+
+int gerarID_Produto();
+
 #endif // FUNCOES_H_INCLUDED

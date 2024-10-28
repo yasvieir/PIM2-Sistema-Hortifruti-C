@@ -227,10 +227,10 @@ void NovoCadastro(){
     FILE *arquivo;
 
     //Verifica se o arquivo existe.
-    arquivo = fopen("cadastros.bin", "rb");
+    arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb");
     if(arquivo == NULL){
         //Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
-        arquivo = fopen("cadastros.bin", "wb");
+        arquivo = fopen("dados\\funcionarios\\cadastros.bin", "wb");
         if(arquivo == NULL){
             printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!"); bold(1);
             bold(0);
@@ -1352,113 +1352,123 @@ void NovoCadastro(){
     telaLimpa();
 
     //Mostra todos os campos inseridos.
-    printf("\n ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                                                                                                      \n");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(" ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                                       CADASTRO                                                       \n");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(" ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                                                                                                      \n");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf("\n");
-
-    ListarCadastro(pessoa);
-
     int escolha;
-    printf("\n ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                                                                                                      \n");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(" ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                         [1] SALVAR | [2] EDITAR | [3] CANCELAR                                       ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(" \n ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(  "                                                                                                                      ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf("\n                                                  ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    printf(                                                     " Escolha uma opção: ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
 
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
-    scanf("%i", &escolha);
-    fflush(stdin);
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-
-    switch(escolha){
-    case 1:
-        //Abre arquivo para escrita binária.
-        arquivo = fopen("cadastros.bin", "ab");
-
-        //Verifica se o arquivo foi encontrado.
-        if(arquivo == NULL){
-            bold(1);
-            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
-            bold(0);
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-            Sleep(800);
-            telaLimpa();
-            return;
-        }
-
-        //Escreve dados inseridos no arquivo.
-        fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
-
-        //Fecha arquivo.
-        fclose(arquivo);
-
-        //Salva o último ID.
-        salvarUltimoID(pessoa.ID);
-
-        //Mensagem de cadastro realizado.
-        bold(1);
-        printf(GREEN "\n\n                                            Cadastro realizado com sucesso!\a\a");
-        bold(0);
+    do{
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      \n");
         SetConsoleTextAttribute(hConsole, saved_attributes);
-        Sleep(800);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                       CADASTRO                                                       \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n");
 
-        telaLimpa();
-        TelaCadastro();
+        ListarCadastro(pessoa);
 
-    case 2:
-        telaLimpa();
-        //Abre arquivo para escrita binária.
-        arquivo = fopen("cadastros.bin", "ab");
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                         [1] SALVAR | [2] EDITAR | [3] CANCELAR                                       ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" \n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n                                                  ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                                     " Escolha uma opção: ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
 
-        //Verifica se o arquivo foi encontrado.
-        if(arquivo == NULL){
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        scanf("%i", &escolha);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        switch(escolha){
+        case 1:
+            //Abre arquivo para escrita binária.
+            arquivo = fopen("dados\\funcionarios\\cadastros.bin", "ab");
+
+            //Verifica se o arquivo foi encontrado.
+            if(arquivo == NULL){
+                bold(1);
+                printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                telaLimpa();
+                return;
+            }
+
+            //Escreve dados inseridos no arquivo.
+            fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
+
+            //Fecha arquivo.
+            fclose(arquivo);
+
+            //Salva o último ID.
+            salvarUltimoID(pessoa.ID);
+
+            //Mensagem de cadastro realizado.
             bold(1);
-            printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+            printf(GREEN "\n\n                                            Cadastro realizado com sucesso!\a\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            TelaCadastro();
+
+        case 2:
+            telaLimpa();
+            //Abre arquivo para escrita binária.
+            arquivo = fopen("dados\\funcionarios\\cadastros.bin", "ab");
+
+            //Verifica se o arquivo foi encontrado.
+            if(arquivo == NULL){
+                bold(1);
+                printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                telaLimpa();
+                return;
+            }
+
+            //Escreve dados inseridos no arquivo.
+            fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
+
+            //Fecha arquivo.
+            fclose(arquivo);
+
+            //Salva o último ID.
+            salvarUltimoID(pessoa.ID);
+            EditarCadastro(pessoa);
+            break;
+        case 3:
+            telaLimpa();
+            TelaCadastro();
+            break;
+        default :
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
             bold(0);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
-            return;
         }
-
-        //Escreve dados inseridos no arquivo.
-        fwrite(&pessoa,sizeof(Pessoa), 1, arquivo);
-
-        //Fecha arquivo.
-        fclose(arquivo);
-
-        //Salva o último ID.
-        salvarUltimoID(pessoa.ID);
-        EditarCadastro(pessoa);
-        break;
-    case 3:
-        telaLimpa();
-        TelaCadastro();
-        break;
-    }
+    }while(escolha != 0);
 }
 
 void ListarCadastros(){
@@ -1477,7 +1487,7 @@ void ListarCadastros(){
     FILE *arquivo;
 
     //Abre o arquivo pra pesquisa binária.
-    arquivo = fopen("cadastros.bin", "rb"); //Modo "rb" pra leitura binária.
+    arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb"); //Modo "rb" pra leitura binária.
     if(arquivo == NULL){
         bold(1);
         printf(RED "\n\n                                                [ERRO:] Nenhum cadastro encontrado!");
@@ -1807,7 +1817,7 @@ void EditarCadastro(Pessoa pessoa){
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                 }else{
                     //Salvando as alterações no arquivo.
-                    FILE *arquivo = fopen("cadastros.bin", "rb+");
+                    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                     if(arquivo != NULL){
                         //Posicionando o ponteiro no início do arquivo.
                         fseek(arquivo, 0, SEEK_SET);
@@ -2140,7 +2150,7 @@ void EditarCadastro(Pessoa pessoa){
                 strcpy(pessoa.login.senha, senha2);
 
                 //Salvando as alterações no arquivo.
-                FILE *arquivo = fopen("cadastros.bin", "rb+");
+                FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                 if(arquivo != NULL){
                     //Posicionando o ponteiro no início do arquivo.
                     fseek(arquivo, 0, SEEK_SET);
@@ -2259,7 +2269,7 @@ void EditarCadastro(Pessoa pessoa){
                     printf("\n");
                 }else{
                     //Salvando as alterações no arquivo.
-                    FILE *arquivo = fopen("cadastros.bin", "rb+");
+                    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                     if(arquivo != NULL){
                         //Posicionando o ponteiro no início do arquivo.
                         fseek(arquivo, 0, SEEK_SET);
@@ -2424,7 +2434,7 @@ void EditarCadastro(Pessoa pessoa){
                 printf(                                                      " %s\n\n ", pessoa.cargo);
 
                 //Salvando as alterações no arquivo.
-                FILE *arquivo = fopen("cadastros.bin", "rb+");
+                FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                 if(arquivo != NULL){
                     //Posicionando o ponteiro no início do arquivo.
                     fseek(arquivo, 0, SEEK_SET);
@@ -2545,7 +2555,7 @@ void EditarCadastro(Pessoa pessoa){
                     printf("\n");
                 }else{
                     //Salvando as alterações no arquivo.
-                    FILE *arquivo = fopen("cadastros.bin", "rb+");
+                    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                     if(arquivo != NULL){
                         //Posicionando o ponteiro no início do arquivo.
                         fseek(arquivo, 0, SEEK_SET);
@@ -2666,7 +2676,7 @@ void EditarCadastro(Pessoa pessoa){
                     printf("\n");
                 }else{
                     //Salvando as alterações no arquivo.
-                    FILE *arquivo = fopen("cadastros.bin", "rb+");
+                    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                     if(arquivo != NULL){
                         //Posicionando o ponteiro no início do arquivo.
                         fseek(arquivo, 0, SEEK_SET);
@@ -2787,7 +2797,7 @@ void EditarCadastro(Pessoa pessoa){
                     printf("\n");
                 }else{
                     //Salvando as alterações no arquivo.
-                    FILE *arquivo = fopen("cadastros.bin", "rb+");
+                    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
                     if(arquivo != NULL){
                         //Posicionando o ponteiro no início do arquivo.
                         fseek(arquivo, 0, SEEK_SET);
@@ -3141,7 +3151,7 @@ void EditarCadastro(Pessoa pessoa){
                 }
             }
             //Salvando as alterações no arquivo.
-            FILE *arquivo = fopen("cadastros.bin", "rb+");
+            FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
             if(arquivo != NULL){
                 //Posicionando o ponteiro no início do arquivo.
                 fseek(arquivo, 0, SEEK_SET);
@@ -3526,7 +3536,7 @@ void AlteraSenha(Pessoa pessoa){
         strcpy(pessoa.login.senha, senha2);
 
         //Salvando as alterações no arquivo.
-        FILE *arquivo = fopen("cadastros.bin", "rb+");
+        FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb+");
         if(arquivo != NULL){
             //Posicionando o ponteiro no início do arquivo.
             fseek(arquivo, 0, SEEK_SET);

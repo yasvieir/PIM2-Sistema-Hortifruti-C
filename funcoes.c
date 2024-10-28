@@ -13,10 +13,10 @@ int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
 
     Pessoa pessoa;
 
-    FILE *arquivo = fopen("cadastros.bin", "rb");
+    FILE *arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb");
     if(arquivo == NULL){
         // Se o arquivo não existe, cria um novo e adiciona o cadastro do Administrador.
-        arquivo = fopen("cadastros.bin", "wb");
+        arquivo = fopen("dados\\funcionarios\\cadastros.bin", "wb");
         if(arquivo == NULL){
             printf(RED "\n\n                                       [ERRO:] Ocorreu um erro ao criar o arquivo!");
             bold(1);
@@ -38,7 +38,7 @@ int verificaLogin(char *ent_usuario, char *ent_senha, char *cargo){
     }
 
     // Reabre o arquivo para leitura
-    arquivo = fopen("cadastros.bin", "rb");
+    arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb");
     while (fread(&pessoa, sizeof(Pessoa), 1, arquivo)) {
         if (strcmp(pessoa.login.usuario, ent_usuario) == 0 && strcmp(pessoa.login.senha, ent_senha) == 0) {
             fclose(arquivo);
@@ -78,7 +78,7 @@ int lerUltimoID(){
     FILE *arquivo;
 
     // Verifica se o arquivo existe
-    arquivo = fopen("ultimo_id.bin", "rb");
+    arquivo = fopen("dados\\funcionarios\\ultimo_id.bin", "rb");
     if(arquivo != NULL){
         fread(&ultimoID, sizeof(int), 1, arquivo); // Lê o último ID do arquivo
         fclose(arquivo);
@@ -95,7 +95,7 @@ int salvarUltimoID(int ultimoID){
     FILE *arquivo;
 
     //Abre um arquivo binário (cria de não existe).
-    arquivo = fopen("ultimo_id.bin", "wb");
+    arquivo = fopen("dados\\funcionarios\\ultimo_id.bin", "wb");
     if(arquivo != NULL){
         //Escreve o último ID no arquivo.
         fwrite(&ultimoID, sizeof(int), 1, arquivo);
@@ -120,7 +120,7 @@ int usuarioExiste(char *usuario){
     FILE *arquivo;
 
     //Abre um arquivo binário (cria de não existe).
-    arquivo = fopen("cadastros.bin", "rb");
+    arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb");
 
     if(arquivo == NULL){
         return 0; //Arquivo não existe, ou não pode ser aberto;
@@ -156,7 +156,7 @@ Pessoa buscarCadastroPorID(int id){
     int encontrado = 0;
 
     //Abre o arquivo para leitura.
-    arquivo = fopen("cadastros.bin", "rb");
+    arquivo = fopen("dados\\funcionarios\\cadastros.bin", "rb");
     if(arquivo == NULL){
         printf("Erro ao abrir o arquivo.\n");
         return cadastro; //Retorna um cadastro vazio em caso de erro.
@@ -177,4 +177,47 @@ Pessoa buscarCadastroPorID(int id){
     }
 
     return cadastro; //Retorna o cadastro encontrado ou vazio.
+}
+
+int lerUltimoID_Produto(){
+
+    FILE *arquivo;
+
+    // Verifica se o arquivo existe
+    arquivo = fopen("dados\\produtos\\ultimo_id_produto.bin", "rb");
+    if(arquivo != NULL){
+        fread(&ultimoID_Produto, sizeof(int), 1, arquivo); // Lê último ID do arquivo
+        fclose(arquivo);
+    }else{
+        // Se o arquivo não existir, inicializa ultimoID_Produto com 0
+        ultimoID_Produto = 0;
+    }
+
+    return ultimoID_Produto;
+}
+
+int salvarUltimoID_Produto(int ultimoID_Produto){
+
+    FILE *arquivo;
+
+    //Abre um arquivo binário (cria se não existir)
+    arquivo = fopen("dados\\produtos\\ultimo_id_produto.bin", "wb");
+    if(arquivo != NULL){
+        // Escreve o último ID no arquivo
+        fwrite(&ultimoID_Produto, sizeof(int), 1, arquivo);
+        fclose(arquivo);
+    }
+}
+
+int gerarID_Produto(){
+
+    static int ultimoID_Produto; //Remove a inicialização com lerUltimoID_Produto()
+
+    // Verifica se é a primeira vez que a função é chamada
+    if(ultimoID_Produto == 0){
+        // Lê o último ID do arquivo
+        ultimoID_Produto = lerUltimoID_Produto();
+    }
+
+    return ++ultimoID_Produto; //Retorna o próximo ID incremental.
 }

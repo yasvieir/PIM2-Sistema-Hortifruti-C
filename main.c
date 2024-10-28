@@ -11,6 +11,7 @@
 #include "funcoes.c"
 #include "estilos.c"
 #include "cadastros.c"
+#include "produtos.c"
 
 int main(int argc, char *argv[]){
 

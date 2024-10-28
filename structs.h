@@ -42,6 +42,19 @@ typedef struct dados_pessoa{
 }Pessoa;
 
 int ultimoID = 0; // Variável para armazenar o último ID gerado
+
+// Inicio de dados para cadastro de produtos
+#define TAM_nomeProduto 51
+
+typedef struct dados_produto{
+    int ID;
+    char nome[TAM_nomeProduto];
+    float preco,
+          qtd_peso;
+}Produto;
+
+int ultimoID_Produto = 0;
+
 //Fim
 
 #endif // STRUCTS_H_INCLUDED
