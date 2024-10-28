@@ -1736,7 +1736,7 @@ void EditarCadastro(Pessoa pessoa){
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf("\n ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-        printf(  "                                                     [0] Cancelar                                                     ");
+        printf(  "                                                     [0] CANCELAR                                                     ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf("\n                                                ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
@@ -3213,12 +3213,9 @@ void EditarCadastro(Pessoa pessoa){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
-
         telaPause();
     }while(opcao != 0);
     telaLimpa();
-
-
 }
 
 void DadosUsuario(){

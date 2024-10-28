@@ -92,7 +92,7 @@ void TelaProdutos(){
             break;
         case 3:
             telaLimpa();
-            BuscaProduto();
+            BuscarProduto();
             break;
         case 4:
             telaLimpa();
@@ -223,7 +223,7 @@ void NovoProduto(){
 
     // Campo de inserção - Preço:
     while (1) {
-        printf("\n                                           ");
+        printf("\n                                 ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
         printf(" Preço (por kg): ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -241,6 +241,28 @@ void NovoProduto(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
             telaLimpa();
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                   EDITAR PRODUTO                                                     ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n");
+            printf("\n                                           ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(                                              " Nome: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(                                                      " %s\n", produto.nome);
             continue; // Volta para o início do loop
         } else {
             break; // Sai do loop se o preço for válido
@@ -268,7 +290,7 @@ void NovoProduto(){
 
         ListarProduto(produto);
 
-        printf("\n ");
+        printf("\n\n ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
         printf(  "                                                                                                                      \n");
         SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -325,7 +347,7 @@ void NovoProduto(){
             Sleep(800);
 
             telaLimpa();
-            TelaCadastro();
+            TelaProdutos();
 
         case 2:
             telaLimpa();
@@ -355,7 +377,7 @@ void NovoProduto(){
             break;
         case 3:
             telaLimpa();
-            TelaCadastro();
+            TelaProdutos();
             break;
         default :
             bold(1);
@@ -382,13 +404,481 @@ void ListarProdutos(){
 
     Produto produto;
     FILE *arquivo;
-}
 
-void BuscaProduto(){
+    //Abre arquivo para pesquisas binárias
+    arquivo = fopen("dados\\produtos\\produtos.bin", "rb");
+    if(arquivo == NULL){
+        bold(1);
+        printf(RED "\n\n                                                [ERRO:] Nenhum produto encontrado!");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        telaLimpa();
+        return;
+    }
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                 LISTA DE PRODUTOS                                                    \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+
+    //Lê os dados do arquivo binário.
+    while(fread(&produto, sizeof(produto), 1, arquivo) == 1){
+        if(produto.ID != 0){ // Pula a impressão do usuário administrador.
+            printf("\n");
+            ListarProduto(produto);
+
+        }
+        printf("\n");
+    }
+
+    //Fecha o arquivo.
+    fclose(arquivo);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                             PRESSIONE ENTER PARA VOLTAR                                              ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
+    telaPause();
+    return;
 }
 
 void BuscarProduto(){
+
+    system("title Buscar Produto");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    int idBuscado;
+
+    while(1){
+
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                   BUSCAR PRODUTO                                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\n");
+
+        printf("   ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(" Digite o ID do produto que deseja buscar: ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        scanf("%i", &idBuscado);
+        fflush(stdin);
+
+        Produto produto = buscarProdutoPorID(idBuscado);
+
+        //Verifica se o ID é igual a zero.
+        if (idBuscado == 0) {
+            bold(1);
+            printf(RED "\n\n                                                [ERRO:] Nenhum produto encontrado!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            return; //Encerra a função.
+        }
+
+        if(produto.ID != -1){
+
+            bold(1);
+            printf(GREEN "\n\n                                             Produto encontrado com sucesso!\n\n");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                  BUSCA DE PRODUTO                                                    ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n");
+            //Mostrando dados do cadastro.
+            ListarProduto(produto);
+
+            //Dando opção de editar
+            int escolha;
+
+            printf("\n\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                    Deseja editar algum campo? [1] Sim | [0] Não                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n                                                  ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(                                                     " Escolha uma opção: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            scanf("%i", &escolha);
+            fflush(stdin);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+
+            if(escolha == 1){
+                telaLimpa();
+                EditarProduto(produto);
+            }
+            break;
+
+        }else{
+            bold(1);
+            printf(RED "\n\n                                                [ERRO:] Nenhum cadastro encontrado!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            return;
+        }
+    }
 }
 
 void EditarProduto(Produto produto){
+
+    system("title Editar Produto");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    int opcao;
+
+    do{
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                   EDITAR PRODUTO                                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\n");
+
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                              QUAL CAMPO DESEJA EDITAR:                                               ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                          [1] Nome | [2] Preço | [3] CANCELAR                                           ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n                                                ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(                                                   " Escolha uma opção: ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        scanf("%i", &opcao);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\n");
+
+        switch(opcao){
+        //Nome:
+        case 1:
+            telaLimpa();
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                   EDITAR PRODUTO                                                     ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n ");
+
+            //Campo de inserção - Nome:
+            while(1){
+                printf("\n                                           ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
+                printf(                                              " Nome: ");
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                printf(" ");
+                fgets(produto.nome, sizeof(produto.nome), stdin);
+                produto.nome[strcspn(produto.nome, "\n")] = 0; //Remove caractere de nova linha.
+                fflush(stdin);
+
+                if(strlen(produto.nome) == 0){
+                    bold(1);
+                    printf(RED "\n\n                                       [!] O campo nome não pode estar vazio!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                                                                                      \n");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf(" ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                EDITAR PRODUTO                                                        \n");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf(" ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                                                                                      \n");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+                    printf(  "                                                       ID: %i                                                          ", produto.ID);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n\n ");
+                }else{
+                    //Salvando as alterações no arquivo.
+                    FILE *arquivo = fopen("dados\\produtos\\produtos.bin", "rb+");
+                    if(arquivo != NULL){
+                        //Posicionando o ponteiro no início do arquivo.
+                        fseek(arquivo, 0, SEEK_SET);
+
+                        Produto cadastro;
+                        int encontrado = 0;
+
+                        //Lendo os cadastros até encontrar o ID.
+                        while(fread(&cadastro, sizeof(Produto), 1, arquivo)){
+                            if (cadastro.ID == produto.ID) {
+                                encontrado = 1;
+                                //Posicionando o ponteiro no início do cadastro encontrado.
+                                fseek(arquivo, -sizeof(Produto), SEEK_CUR);
+                                //Escreva as alterações no arquivo.
+                                fwrite(&produto, sizeof(Produto), 1, arquivo);
+                                break; //Encerrando o loop se o ID for encontrado.
+                            }
+                        }
+
+                        fclose(arquivo); //Fecha o arquivo.
+
+                        if(encontrado){
+                            bold(1);
+                            printf(GREEN "\n\n                                             Cadastro atualizado com sucesso!");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            TelaProdutos();
+                            break;
+                        }else{
+                            bold(1);
+                            printf(RED "\n\n                                                [ERRO:] Erro ao atualizar o cadastro.!");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            TelaProdutos();
+                            break;
+                        }
+                    }else{
+                        bold(1);
+                        printf(RED "\n\n                                                [ERRO:] Erro ao abrir o arquivo!");
+                        bold(0);
+                        SetConsoleTextAttribute(hConsole, saved_attributes);
+                        Sleep(800);
+                        telaLimpa();
+                        TelaProdutos();
+                        break;
+                    }
+                    break; //Sai do loop se o nome for válido
+                }
+            }
+            break;
+        //Preço:
+        case 2:
+            telaLimpa();
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                   EDITAR PRODUTO                                                     ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(  "                                                                                                                      ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n\n ");
+
+            // Campo de inserção - Preço:
+            while (1) {
+                printf("\n                                 ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+                printf(" Preço (por kg): ");
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                printf(" R$ ");
+
+                // Lê o preço
+                scanf("%f", &produto.preco);
+                fflush(stdin);
+
+                // Valida se o preço é válido (não pode ser negativo)
+                if (produto.preco < 0) {
+                    bold(1);
+                    printf(RED "\n\n                                       [!] O preço não pode ser negativo!\a");
+                    bold(0);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    Sleep(800);
+                    telaLimpa();
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                                                                                      ");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                   EDITAR PRODUTO                                                     ");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+                    printf(  "                                                                                                                      ");
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n\n ");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+                    printf(  "                                                       ID: %i                                                          ", produto.ID);
+                    SetConsoleTextAttribute(hConsole, saved_attributes);
+                    printf("\n\n ");
+                    continue; // Volta para o início do loop
+                } else {
+                    FILE *arquivo = fopen("dados\\produtos\\produtos.bin", "rb+");
+                    if(arquivo != NULL){
+                        //Posicionando o ponteiro no início do arquivo.
+                        fseek(arquivo, 0, SEEK_SET);
+
+                        Produto cadastro;
+                        int encontrado = 0;
+
+                        //Lendo os cadastros até encontrar o ID.
+                        while(fread(&cadastro, sizeof(Produto), 1, arquivo)){
+                            if (cadastro.ID == produto.ID) {
+                                encontrado = 1;
+                                //Posicionando o ponteiro no início do cadastro encontrado.
+                                fseek(arquivo, -sizeof(Produto), SEEK_CUR);
+                                //Escreva as alterações no arquivo.
+                                fwrite(&produto, sizeof(Produto), 1, arquivo);
+                                break; //Encerrando o loop se o ID for encontrado.
+                            }
+                        }
+
+                        fclose(arquivo); //Fecha o arquivo.
+
+                        if(encontrado){
+                            bold(1);
+                            printf(GREEN "\n\n                                             Cadastro atualizado com sucesso!");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            TelaProdutos();
+                            break;
+                        }else{
+                            bold(1);
+                            printf(RED "\n\n                                                [ERRO:] Erro ao atualizar o cadastro.!");
+                            bold(0);
+                            SetConsoleTextAttribute(hConsole, saved_attributes);
+                            Sleep(800);
+                            telaLimpa();
+                            TelaProdutos();
+                            break;
+                        }
+                    }else{
+                        bold(1);
+                        printf(RED "\n\n                                                [ERRO:] Erro ao abrir o arquivo!");
+                        bold(0);
+                        SetConsoleTextAttribute(hConsole, saved_attributes);
+                        Sleep(800);
+                        telaLimpa();
+                        TelaProdutos();
+                        break;
+                    }
+                    break; // Sai do loop se o preço for válido
+                }
+            }
+            break;
+        case 3:
+            telaLimpa();
+            TelaProdutos();
+            break;
+        default:
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+        }
+
+        telaPause();
+    }while(opcao != 3);
+    telaLimpa();
 }

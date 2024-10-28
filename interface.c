@@ -291,22 +291,17 @@ void telaGerente(){
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [3] - Produtos / Preços         ");
+        printf(                                           "    [3] - Produtos                  ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [3] - Estoque                   ");
+        printf(                                           "    [4] - Estoque                   ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [5] - Preços                    ");
-        SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                                "                                        \n"
-                 "                                        ");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [6] - Informações               ");
+        printf(                                           "    [5] - Informações               ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
@@ -353,9 +348,6 @@ void telaGerente(){
             telaLimpa();
             break;
         case 5:
-            telaLimpa();
-            break;
-        case 6:
             telaLimpa();
             DadosUsuario();
             break;
