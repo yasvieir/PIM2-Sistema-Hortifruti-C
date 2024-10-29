@@ -268,6 +268,7 @@ void NovoProduto(){
             break; // Sai do loop se o preço for válido
         }
     }
+    produto.qtd_peso = 0;
     telaLimpa();
 
     //Mostra todos os campos inseridos.
@@ -877,7 +878,6 @@ void EditarProduto(Produto produto){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             Sleep(800);
         }
-
         telaPause();
     }while(opcao != 3);
     telaLimpa();

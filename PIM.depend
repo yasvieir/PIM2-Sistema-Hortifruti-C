@@ -31,7 +31,7 @@
 1727827620 c:\users\zukki\downloads\pim\estilos.c
 	"estilos.h"
 
-1730150099 source:c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\main.c
+1730164190 source:c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -44,14 +44,16 @@
 	"estilos.c"
 	"cadastros.c"
 	"produtos.c"
+	"estoque.c"
 
-1730154607 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
+1730164176 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
 	"interface.h"
 	"structs.h"
 	"funcoes.h"
 	"estilos.h"
 	"cadastros.h"
 	"produtos.h"
+	"estoque.h"
 
 1730000654 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.h
 
@@ -77,8 +79,16 @@
 
 1730155110 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\produtos.h
 
-1730157111 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\produtos.c
+1730163924 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\produtos.c
 	"produtos.h"
+	"structs.h"
+	"estilos.h"
+	"funcoes.h"
+
+1730163194 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estoque.h
+
+1730165462 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\estoque.c
+	"estoque.h"
 	"structs.h"
 	"estilos.h"
 	"funcoes.h"
