@@ -12,7 +12,6 @@
 #include "estilos.c"
 #include "cadastros.c"
 #include "produtos.c"
-#include "estoque.c"
 
 int main(int argc, char *argv[]){
 
