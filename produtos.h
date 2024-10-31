@@ -9,6 +9,8 @@ void NovoProduto();
 
 void ListarProdutos();
 
+void BuscaProduto();
+
 void BuscarProduto();
 
 void EditarProduto(Produto produto);

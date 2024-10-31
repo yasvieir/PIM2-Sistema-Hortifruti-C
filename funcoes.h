@@ -25,6 +25,4 @@ int salvarUltimoID_Produto(int ultimoID_Produto);
 
 int gerarID_Produto();
 
-Produto buscarProdutoPorID(int id);
-
 #endif // FUNCOES_H_INCLUDED

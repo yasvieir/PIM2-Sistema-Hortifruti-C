@@ -62,10 +62,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="produtos.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="produtos.h" />
 		<Unit filename="structs.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
