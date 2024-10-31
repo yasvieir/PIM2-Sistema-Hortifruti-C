@@ -5,6 +5,7 @@
 #include "estilos.h"
 #include "cadastros.h"
 #include "produtos.h"
+#include "estoque.h"
 
 void telaTamanho(){
     system("MODE con cols=168");// configura a quantidad de colunas e linhas que o console terá;
@@ -291,22 +292,17 @@ void telaGerente(){
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [3] - Produtos / Preços         ");
+        printf(                                           "    [3] - Produtos e Preços         ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [3] - Estoque                   ");
+        printf(                                           "    [4] - Estoque                   ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [5] - Preços                    ");
-        SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                                "                                        \n"
-                 "                                        ");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [6] - Informações               ");
+        printf(                                           "    [5] - Informações               ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                "                                        \n"
                  "                                        ");
@@ -351,6 +347,7 @@ void telaGerente(){
             break;
         case 4:
             telaLimpa();
+            TelaEstoque();
             break;
         case 5:
             telaLimpa();
@@ -452,7 +449,7 @@ void telaFuncionario(){
             break;
         case 1:
             telaLimpa();
-            TelaPVD();
+            //TelaPVD();
             break;
         case 2:
             telaLimpa();

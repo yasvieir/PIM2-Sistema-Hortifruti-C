@@ -221,3 +221,32 @@ int gerarID_Produto(){
 
     return ++ultimoID_Produto; //Retorna o próximo ID incremental.
 }
+
+Produto buscarProdutoPorID(int id){
+    FILE *arquivo;
+    Produto produto;
+    int encontrado = 0;
+
+    //Abre o arquivo para leitura.
+    arquivo = fopen("dados\\produtos\\produtos.bin", "rb");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo.\n");
+        return produto; //Retorna um produto vazio em caso de erro.
+    }
+
+    //Lê os cadastros até encontrar o ID
+    while(fread(&produto, sizeof(Produto), 1, arquivo)){
+        if (produto.ID == id) { //Compara com o ID de entrada, não produto.ID.
+            encontrado = 1;
+            break; //Encerra o loop se o ID for encontrado.
+        }
+    }
+
+    fclose(arquivo); //Fecha o arquivo.
+
+    if(!encontrado){
+        produto.ID = -1; //Indica que não foi encontrado.
+    }
+
+    return produto; //Retorna o produto encontrado ou vazio.
+}

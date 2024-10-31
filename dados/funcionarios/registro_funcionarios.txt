@@ -1,0 +1,1 @@
+Os cadastros dos funcionários, ficarão armazenados nesta pasta.
