@@ -35,4 +35,12 @@ int gerarID_Venda();
 
 Venda buscarVendaPorID(int id);
 
+int lerUltimoID_Carrinho();
+
+int salvarUltimoID_Carrinho(int ultimoID_Carrinho);
+
+int gerarID_Carrinho();
+
+Venda buscarCarrinhoPorID(int id);
+
 #endif // FUNCOES_H_INCLUDED

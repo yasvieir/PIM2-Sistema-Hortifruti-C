@@ -63,6 +63,8 @@ typedef struct dados_venda{
 
 int ultimoID_Venda = 0;
 
+int ultimoID_Carrinho = 0;
+
 //Fim
 
 #endif // STRUCTS_H_INCLUDED

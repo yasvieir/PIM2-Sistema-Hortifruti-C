@@ -250,3 +250,143 @@ Produto buscarProdutoPorID(int id){
 
     return produto; //Retorna o produto encontrado ou vazio.
 }
+
+int lerUltimoID_Venda(){
+
+    FILE *arquivo;
+
+    // Verifica se o arquivo existe
+    arquivo = fopen("dados\\vendas\\ultimo_id_venda.bin", "rb");
+    if(arquivo != NULL){
+        fread(&ultimoID_Venda, sizeof(int), 1, arquivo); // Lê último ID do arquivo
+        fclose(arquivo);
+    }else{
+        // Se o arquivo não existir, inicializa ultimoID_Venda com 0
+        ultimoID_Venda = 0;
+    }
+    return ultimoID_Venda;
+}
+
+int salvarUltimoID_Venda(int ultimoID_Venda){
+
+    FILE *arquivo;
+
+    //Abre um arquivo binário (cria se não existir)
+    arquivo = fopen("dados\\vendas\\ultimo_id_vendas.bin", "wb");
+    if(arquivo != NULL){
+        // Escreve o último ID no arquivo
+        fwrite(&ultimoID_Venda, sizeof(int), 1, arquivo);
+        fclose(arquivo);
+    }
+}
+
+int gerarID_Venda(){
+
+    static int ultimoID_Venda; //Remove a inicialização com lerUltimoID_Venda()
+
+    // Verifica se é a primeira vez que a função é chamada
+    if(ultimoID_Venda == 0){
+        // Lê o último ID do arquivo
+        ultimoID_Venda = lerUltimoID_Venda();
+    }
+    return ++ultimoID_Venda; //Retorna o próximo ID incremental.
+}
+
+Venda buscarVendaPorID(int id){
+    FILE *arquivo;
+    Venda venda;
+    int encontrado = 0;
+
+    //Abre o arquivo para leitura.
+    arquivo = fopen("dados\\vendas\\vendas.bin", "rb");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo.\n");
+        return venda; //Retorna uma venda vazia em caso de erro.
+    }
+
+    //Lê os cadastros até encontrar o ID
+    while(fread(&venda, sizeof(Venda), 1, arquivo)){
+        if (venda.ID == id) { //Compara com o ID de entrada, não venda.ID.
+            encontrado = 1;
+            break; //Encerra o loop se o ID for encontrado.
+        }
+    }
+
+    fclose(arquivo); //Fecha o arquivo.
+
+    if(!encontrado){
+        venda.ID = -1; //Indica que não foi encontrado.
+    }
+
+    return venda; //Retorna a venda encontrada ou vazia.
+}
+
+int lerUltimoID_Carrinho(){
+
+    FILE *arquivo;
+
+    // Verifica se o arquivo existe
+    arquivo = fopen("dados\\vendas\\ultimo_id_carrinho.bin", "rb");
+    if(arquivo != NULL){
+        fread(&ultimoID_Carrinho, sizeof(int), 1, arquivo); // Lê último ID do arquivo
+        fclose(arquivo);
+    }else{
+        // Se o arquivo não existir, inicializa ultimoID_Carrinho com 0
+        ultimoID_Carrinho = 0;
+    }
+    return ultimoID_Carrinho;
+}
+
+int salvarUltimoID_Carrinho(int ultimoID_Carrinho){
+
+    FILE *arquivo;
+
+    //Abre um arquivo binário (cria se não existir)
+    arquivo = fopen("dados\\vendas\\ultimo_id_vendas.bin", "wb");
+    if(arquivo != NULL){
+        // Escreve o último ID no arquivo
+        fwrite(&ultimoID_Carrinho, sizeof(int), 1, arquivo);
+        fclose(arquivo);
+    }
+}
+
+int gerarID_Carrinho(){
+
+    static int ultimoID_Carrinho; //Remove a inicialização com lerUltimoID_Carrinho()
+
+    // Verifica se é a primeira vez que a função é chamada
+    if(ultimoID_Carrinho == 0){
+        // Lê o último ID do arquivo
+        ultimoID_Carrinho = lerUltimoID_Carrinho();
+    }
+    return ++ultimoID_Carrinho; // Retorna o próximo ID incremental
+}
+
+Venda buscarCarrinhoPorID(int id){
+    FILE *arquivo;
+    Venda carrinho;
+    int encontrado = 0;
+
+    //Abre o arquivo para leitura.
+    arquivo = fopen("dados\\vendas\\carrinho.bin", "rb");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo.\n");
+        return carrinho; //Retorna um carrinho vazio em caso de erro.
+    }
+
+    //Lê os cadastros até encontrar o ID
+    while(fread(&carrinho, sizeof(Venda), 1, arquivo)){
+        if (carrinho.ID == id) { //Compara com o ID de entrada, não carrinho.ID.
+            encontrado = 1;
+            break; //Encerra o loop se o ID for encontrado.
+        }
+    }
+
+    fclose(arquivo); //Fecha o arquivo.
+
+    if(!encontrado){
+        carrinho.ID = -1; //Indica que não foi encontrado.
+    }
+
+    return carrinho; //Retorna o carrinho encontrado ou vazio.
+}
