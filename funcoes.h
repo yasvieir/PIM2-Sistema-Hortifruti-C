@@ -27,4 +27,12 @@ int gerarID_Produto();
 
 Produto buscarProdutoPorID(int id);
 
+int lerUltimoID_Venda();
+
+int salvarUltimoID_Venda(int ultimoID_Venda);
+
+int gerarID_Venda();
+
+Venda buscarVendaPorID(int id);
+
 #endif // FUNCOES_H_INCLUDED

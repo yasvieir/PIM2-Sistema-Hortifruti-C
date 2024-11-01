@@ -55,6 +55,14 @@ typedef struct dados_produto{
 
 int ultimoID_Produto = 0;
 
+typedef struct dados_venda{
+    int ID;
+    Produto item;
+    float valor;
+}Venda;
+
+int ultimoID_Venda = 0;
+
 //Fim
 
 #endif // STRUCTS_H_INCLUDED

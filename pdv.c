@@ -91,7 +91,7 @@ void TelaPDV(){
             break; // Sai do loop se o login for bem-sucedido
         case 1:
             telaLimpa();
-
+            IniciarVenda();
             break;
         case 2:
             telaLimpa();
@@ -124,5 +124,31 @@ void TelaPDV(){
 
 void IniciarVenda(){
 
+    system("title Nova Venda");
 
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    /* Salvar estado atual */
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                      NOVA VENDA                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+    printf(  "                                                       ID: ");
+
+    //Gerando id do carrinho
 }
