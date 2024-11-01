@@ -75,8 +75,15 @@ void TelaEstoque(){
         switch(escolha){
         case 0:
             telaLimpa();
-            telaGerente();
-            break;
+            // Aqui você pode usar o cargo para redirecionar o usuário
+            if(strcmp(usuarioLogado.cargo, "ADMINISTRADOR") == 0){
+                telaMenuAdmin(); // Chama a tela do menu do administrador
+            }else if(strcmp(usuarioLogado.cargo, "GERENTE") == 0){
+                telaGerente(); // Chama a tela do gerente
+            }else if(strcmp(usuarioLogado.cargo, "OPERADOR DE CAIXA") == 0 || strcmp(usuarioLogado.cargo, "ESTOQUISTA") == 0){
+                telaFuncionario(); // Chama a tela do funcionário
+            }
+            break; // Sai do loop se o login for bem-sucedido
         case 1:
             telaLimpa();
             MostrarEstoque();
