@@ -3,6 +3,12 @@
 
 void TelaPDV();
 
-void IniciarVenda();
+void ListaDeProdutos();
+
+void MontarCarrinho();
+
+void AdicionarItemCarrinho(Carrinho *carrinho);
+
+void RemoverItemCarrinho(Carrinho *carrinho);
 
 #endif // PDV_H_INCLUDED

@@ -6,6 +6,7 @@
 #include "cadastros.h"
 #include "produtos.h"
 #include "estoque.h"
+#include "pdv.h"
 
 void telaTamanho(){
     system("MODE con cols=168");// configura a quantidad de colunas e linhas que o console terá;
@@ -339,7 +340,7 @@ void telaGerente(){
             break;
         case 2:
             telaLimpa();
-
+            TelaPDV();
             break;
         case 3:
             telaLimpa();
@@ -449,7 +450,7 @@ void telaFuncionario(){
             break;
         case 1:
             telaLimpa();
-            //TelaPVD();
+            TelaPDV();
             break;
         case 2:
             telaLimpa();

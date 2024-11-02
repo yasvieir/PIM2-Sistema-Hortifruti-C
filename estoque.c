@@ -56,11 +56,6 @@ void TelaEstoque(){
         printf(                                                                                 "                                       \n"
                  "                                        ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-        printf(                                           "    [3] - Sair                       ");
-        SetConsoleTextAttribute(hConsole, saved_attributes);
-        printf(                                                                                 "                                       \n"
-                 "                                        ");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
         printf(                                           "                                     ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf(                                                                                 "                                       \n"
@@ -91,15 +86,6 @@ void TelaEstoque(){
         case 2:
             telaLimpa();
             BuscarEstoque();
-            break;
-        case 3:
-            telaLimpa();
-            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | BACKGROUND_RED);
-            animacao_de_saida();
-            SetConsoleTextAttribute(hConsole, saved_attributes);
-
-            telaLimpa();
-            telaSaida();
             break;
         default :
             bold(1);
@@ -574,6 +560,7 @@ void EditarEstoque(Produto produto){
             }
             break;
         case 3:
+            TelaEstoque();
             break;
         default:
             bold(1);

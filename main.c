@@ -13,6 +13,7 @@
 #include "cadastros.c"
 #include "produtos.c"
 #include "estoque.c"
+#include "pdv.c"
 
 int main(int argc, char *argv[]){
 
