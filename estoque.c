@@ -109,23 +109,15 @@ void ListarEstoque(Produto produto){
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    printf(" ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-    printf(  "                                                       ID: %i                                                          ", produto.ID);
+    // Lê os dados do arquivo binário.
+    printf("\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    printf(" %-10i | %-50s | %-12.3f kg | R$ %-15.2f",
+           produto.ID,
+           produto.nome,
+           produto.qtd_peso,
+           produto.preco);
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf("\n\n \t\t\t");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                    " Nome: ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                            " %s\t\t", produto.nome);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                                  " Preço (por kg): ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                           " R$ %.2f\t", produto.preco);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf(                                                      " Quantidade: ");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf(                                                              " %.3f kg", produto.qtd_peso);
 }
 
 void MostrarEstoque(){
@@ -167,13 +159,19 @@ void MostrarEstoque(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-
+    printf("\n\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    printf(" %-10s | %-50s | %-15s | %-18s", "ID:", "Produto:", "Quantidade:", "Valor (por kg):");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    printf("------------|----------------------------------------------------|-----------------|-------------------"); // 119 caracteres
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
     //Lê os dados do arquivo binário.
     while(fread(&produto, sizeof(produto), 1, arquivo) == 1){
         if(produto.ID != 0){ // Pula a impressão do usuário administrador.
-            printf("\n");
             ListarEstoque(produto);
-
         }
         printf("\n");
     }

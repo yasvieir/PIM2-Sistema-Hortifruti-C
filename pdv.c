@@ -875,7 +875,23 @@ void ListarCarrinhosGuardados(){
         SetConsoleTextAttribute(hConsole, saved_attributes);
         printf("\n\n");
     }
+    //Fecha o arquivo.
     fclose(arquivoCarrinho);
 
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                             PRESSIONE ENTER PARA VOLTAR                                              ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      ");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
     telaPause();
+    return;
 }

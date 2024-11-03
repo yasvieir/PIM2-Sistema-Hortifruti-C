@@ -127,7 +127,7 @@ void ListarProduto(Produto produto){
 
     printf(" ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-    printf(  "                                                       ID: %i                                                          ", produto.ID);
+    printf(  "                                                       ID: %-59i", produto.ID);
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n\n \t\t\t");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE| FOREGROUND_GREEN | FOREGROUND_INTENSITY| FOREGROUND_RED | BACKGROUND_INTENSITY);
@@ -176,7 +176,7 @@ void NovoProduto(){
     produto.ID = gerarID_Produto();
 
     // Mostra ID atual
-    printf(                                                              " %i                                                         ", produto.ID);
+    printf(                                                              " %-59i", produto.ID);
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n");
 
@@ -213,7 +213,7 @@ void NovoProduto(){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            printf(  "                                                       ID: %-59i", produto.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n ");
         }else{
@@ -407,20 +407,32 @@ void ListarProdutos(){
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    printf(" %-10s | %-68s | %-18s", "ID:", "Nome:", "Valor (por kg):");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    printf("------------|----------------------------------------------------------------------|-------------------"); // 119 caracteres
+    SetConsoleTextAttribute(hConsole, saved_attributes);
 
     //Lê os dados do arquivo binário.
     while(fread(&produto, sizeof(produto), 1, arquivo) == 1){
-        if(produto.ID != 0){ // Pula a impressão do usuário administrador.
-            printf("\n");
-            ListarProduto(produto);
-
+        if(produto.ID != 0){
+            // Lê os dados do arquivo binário.
+            printf("\n\t");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(" %-10i | %-68s | R$ %-15.2f",
+                   produto.ID,
+                   produto.nome,
+                   produto.preco);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
         }
-        printf("\n");
     }
 
     //Fecha o arquivo.
     fclose(arquivo);
-    printf("\n ");
+    printf("\n\n ");
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(  "                                                                                                                      ");
     SetConsoleTextAttribute(hConsole, saved_attributes);
@@ -632,7 +644,7 @@ void EditarProduto(Produto produto){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            printf(  "                                                       ID: %-59i", produto.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n ");
 
@@ -669,7 +681,7 @@ void EditarProduto(Produto produto){
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     printf("\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-                    printf(  "                                                       ID: %i                                                          ", produto.ID);
+                    printf(  "                                                       ID: %-59i", produto.ID);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     printf("\n\n ");
                 }else{
@@ -746,7 +758,7 @@ void EditarProduto(Produto produto){
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-            printf(  "                                                       ID: %i                                                          ", produto.ID);
+            printf(  "                                                       ID: %-59i", produto.ID);
             SetConsoleTextAttribute(hConsole, saved_attributes);
             printf("\n\n ");
 
@@ -784,7 +796,7 @@ void EditarProduto(Produto produto){
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     printf("\n\n ");
                     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
-                    printf(  "                                                       ID: %i                                                          ", produto.ID);
+                    printf(  "                                                       ID: %-59i", produto.ID);
                     SetConsoleTextAttribute(hConsole, saved_attributes);
                     printf("\n\n ");
                     continue; // Volta para o início do loop
