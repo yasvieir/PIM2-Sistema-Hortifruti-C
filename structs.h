@@ -66,12 +66,27 @@ typedef struct dados_venda{
 
 int ultimoID_Venda = 0;
 
-typedef struct {
+// Estrutura para armazenar itens no carrinho
+typedef struct item_carrinho {
+    int id; // ID sequencial do item no carrinho
+    Produto produto; // Produto associado ao item
+    float quantidade; // Quantidade comprada
+} ItemCarrinho;
+
+// Estrutura para o carrinho de compras
+typedef struct dados_carrinho {
     int ID; // ID do carrinho
-    Produto produtos;
+    ItemCarrinho item; // Item atual no carrinho
+    struct dados_carrinho *proximo; // Ponteiro para o próximo item no carrinho
     int totalProdutos; // Total de produtos no carrinho
     float valor_total; // Valor total da compra
 } Carrinho;
+
+typedef struct {
+    int id; // ID do carrinho guardado
+    ItemCarrinho item; // Item do carrinho
+    struct dados_carrinho_guardado *proximo; // Ponteiro para o próximo item
+} CarrinhoGuardado;
 
 int ultimoID_Carrinho = 0;
 

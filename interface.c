@@ -352,6 +352,7 @@ void telaGerente(){
             break;
         case 5:
             telaLimpa();
+            DadosUsuario();
             break;
         case 6:
             telaLimpa();

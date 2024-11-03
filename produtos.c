@@ -268,7 +268,7 @@ void NovoProduto(){
 
         ListarProduto(produto);
 
-        printf("\n ");
+        printf("\n\n ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
         printf(  "                                                                                                                      \n");
         SetConsoleTextAttribute(hConsole, saved_attributes);
