@@ -57,10 +57,8 @@ int ultimoID_Produto = 0;
 
 typedef struct dados_venda{
     int ID;
-    Produto produtos;
-    float qtd_kg;
-    float valor_item;
-    int qtd_itens;
+    ItemCarrinho item; // Item do carrinho
+    struct dados_carrinho_guardado *proximo; // Ponteiro para o próximo item
     float valor_total;
 }Venda;
 

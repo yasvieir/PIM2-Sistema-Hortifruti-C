@@ -362,9 +362,9 @@ int gerarID_Carrinho(){
     return ++ultimoID_Carrinho; // Retorna o próximo ID incremental
 }
 
-Venda buscarCarrinhoPorID(int id){
+CarrinhoGuardado buscarCarrinhoPorID(int id){
     FILE *arquivo;
-    Venda carrinho;
+    CarrinhoGuardado carrinho;
     int encontrado = 0;
 
     //Abre o arquivo para leitura.
@@ -375,8 +375,8 @@ Venda buscarCarrinhoPorID(int id){
     }
 
     //Lê os cadastros até encontrar o ID
-    while(fread(&carrinho, sizeof(Venda), 1, arquivo)){
-        if (carrinho.ID == id) { //Compara com o ID de entrada, não carrinho.ID.
+    while(fread(&carrinho, sizeof(CarrinhoGuardado), 1, arquivo)){
+        if(carrinho.ID == id){ //Compara com o ID de entrada, não carrinho.ID.
             encontrado = 1;
             break; //Encerra o loop se o ID for encontrado.
         }
