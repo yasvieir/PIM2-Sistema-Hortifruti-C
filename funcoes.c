@@ -376,7 +376,7 @@ CarrinhoGuardado buscarCarrinhoPorID(int id){
 
     //Lê os cadastros até encontrar o ID
     while(fread(&carrinho, sizeof(CarrinhoGuardado), 1, arquivo)){
-        if(carrinho.ID == id){ //Compara com o ID de entrada, não carrinho.ID.
+        if(carrinho.id == id){ //Compara com o ID de entrada, não carrinho.ID.
             encontrado = 1;
             break; //Encerra o loop se o ID for encontrado.
         }
@@ -385,7 +385,7 @@ CarrinhoGuardado buscarCarrinhoPorID(int id){
     fclose(arquivo); //Fecha o arquivo.
 
     if(!encontrado){
-        carrinho.ID = -1; //Indica que não foi encontrado.
+        carrinho.id = -1; //Indica que não foi encontrado.
     }
 
     return carrinho; //Retorna o carrinho encontrado ou vazio.
