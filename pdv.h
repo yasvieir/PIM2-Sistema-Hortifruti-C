@@ -11,6 +11,12 @@ void AdicionarItemCarrinho(Carrinho **carrinho);
 
 void RemoverItemCarrinho(Carrinho **carrinho);
 
+void SalvarCarrinho(Carrinho **carrinho);
+
 void CancelarCarrinho(Carrinho **carrinho);
+
+void TelaCarrinhos();
+
+void ListarCarrinhosGuardados();
 
 #endif // PDV_H_INCLUDED

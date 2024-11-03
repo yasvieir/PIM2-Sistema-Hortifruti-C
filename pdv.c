@@ -104,6 +104,7 @@ void TelaPDV(){
             break;
         case 4:
             telaLimpa();
+            ListarCarrinhosGuardados();
             break;
         default :
             bold(1);
@@ -334,6 +335,11 @@ void MontarCarrinho(){
                 telaLimpa();
                 break;
             case 4:
+                telaLimpa();
+                SalvarCarrinho(&carrinho);
+                TelaPDV();
+                break;
+            case 5:
                 telaLimpa();
                 CancelarCarrinho(&carrinho);
                 break;
@@ -596,6 +602,70 @@ void RemoverItemCarrinho(Carrinho **carrinho){
     }
 }
 
+void SalvarCarrinho(Carrinho **carrinho) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    if (*carrinho == NULL) {
+        bold(1);
+        printf(RED "\n\n                                            [!] Carrinho vazio. Não há nada para salvar!\n\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        telaLimpa();
+        return;
+    }
+
+    // Gerar um novo ID para o carrinho
+    int idCarrinho = gerarID_Carrinho();
+
+    // Abrir o arquivo para adicionar o carrinho
+    FILE *arquivoCarrinho = fopen("dados\\vendas\\carrinhos_guardados.bin", "ab");
+    if (arquivoCarrinho == NULL) {
+        bold(1);
+        printf(RED "\n\n                                            [!] Erro ao abrir o arquivo para salvar o carrinho!\n\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        telaLimpa();
+        return;
+    }
+
+    // Iterar sobre os itens do carrinho e salvá-los
+    Carrinho *itemAtual = *carrinho; // Começa do início da lista
+    while (itemAtual != NULL) {
+        CarrinhoGuardado carrinhoGuardado;
+        carrinhoGuardado.id = idCarrinho; // Atribui o ID do carrinho guardado
+        carrinhoGuardado.item = itemAtual->item; // Salva o item atual
+        carrinhoGuardado.proximo = NULL; // Para simplificação, não estamos implementando uma lista encadeada aqui
+
+        // Escrever no arquivo
+        fwrite(&carrinhoGuardado, sizeof(CarrinhoGuardado), 1, arquivoCarrinho);
+        itemAtual = itemAtual->proximo; // Avança para o próximo item
+    }
+
+    fclose(arquivoCarrinho);
+
+    // Atualiza o último ID de carrinho no arquivo
+    salvarUltimoID_Carrinho(ultimoID_Carrinho); // Salva o último ID de carrinho
+
+    bold(1);
+    printf(GREEN "\n\n                                        [!] Carrinho salvo com sucesso! ID do carrinho: %d\n\a\a", idCarrinho);
+    bold(0);
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    Sleep(800);
+    telaLimpa();
+
+    // Encerrar o carrinho
+    free(*carrinho); // Liberar a memória do carrinho
+    *carrinho = NULL; // Definir o ponteiro como NULL
+}
+
 void CancelarCarrinho(Carrinho **carrinho){
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -646,4 +716,166 @@ void CancelarCarrinho(Carrinho **carrinho){
     Sleep(800);
     telaLimpa();
     TelaPDV();
+}
+
+void TelaCarrinhos(){
+
+    system("title Carrinhos");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    int escolha;
+
+    do{
+        printf("\n\n\n\n\n\n\n"
+               "\n                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                 MENU                ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [0] - Voltar                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [1] - Listar Carrinhos           ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [2] - Buscar Carrinho            ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                     ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                 "                                       \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "  Escolha uma opção para continuar: ");
+
+        scanf("%i", &escolha);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        switch(escolha){
+        case 0:
+            telaLimpa();
+            TelaPDV();
+            break;
+        case 1:
+            telaLimpa();
+            ListarCarrinhosGuardados();
+            break;
+        case 2:
+            telaLimpa();
+
+            break;
+        default :
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+        }
+        telaLimpa();
+    }while(escolha != 0);
+    telaLimpa();
+
+}
+
+void ListarCarrinhosGuardados(){
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    printf("\n ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                     CARRINHOS                                                        \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf(" ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(  "                                                                                                                      \n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+
+    FILE *arquivoCarrinho = fopen("dados\\vendas\\carrinhos_guardados.bin", "rb");
+    if(arquivoCarrinho == NULL){
+        printf("Nenhum carrinho guardado encontrado.\n");
+        return; // Sai da função se o arquivo não puder ser aberto
+    }
+
+    CarrinhoGuardado carrinhoGuardado; // Estrutura para armazenar temporariamente os dados lidos
+    float valorTotal = 0.0; // Variável para calcular o valor total do carrinho
+
+    while(fread(&carrinhoGuardado, sizeof(CarrinhoGuardado), 1, arquivoCarrinho) == 1){
+
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                                         %-61i", carrinhoGuardado.id);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\n");
+
+        // Lê os dados do arquivo binário.
+        printf("\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(" %-10s | %-50s | %-15s | %-18s", "Item:", "Produto:", "Quantidade:", "Valor:");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf("------------|----------------------------------------------------|-----------------|-------------------"); // 119 caracteres
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(" %-10i | %-50s | %-12.3f kg | R$ %-15.2f",
+               carrinhoGuardado.item.id, // ID do item no carrinho
+               carrinhoGuardado.item.produto.nome,
+               carrinhoGuardado.item.quantidade,
+               carrinhoGuardado.item.produto.preco * carrinhoGuardado.item.quantidade);
+        valorTotal += carrinhoGuardado.item.produto.preco * carrinhoGuardado.item.quantidade; // Acumula o valor total
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n");
+        printf("\n\t\t\t\t\t\t");
+        // Exibe o valor total do carrinho
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_GREEN);
+        printf(" Valor total: R$ %.2f ", valorTotal);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n\n");
+    }
+    fclose(arquivoCarrinho);
+
+    telaPause();
 }

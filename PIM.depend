@@ -47,7 +47,7 @@
 	"estoque.c"
 	"pdv.c"
 
-1730497662 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
+1730604837 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\interface.c
 	"interface.h"
 	"structs.h"
 	"funcoes.h"
@@ -95,9 +95,9 @@
 	"estilos.h"
 	"funcoes.h"
 
-1730604623 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\pdv.h
+1730607730 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\pdv.h
 
-1730604666 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\pdv.c
+1730609979 c:\users\pedro\onedrive\projetos\pim_2_hortifrut\pim2-sistema-hortifruti-c\pdv.c
 	"pdv.h"
 	"structs.h"
 	"estilos.h"
