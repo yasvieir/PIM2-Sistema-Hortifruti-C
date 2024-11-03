@@ -7,34 +7,9 @@
 			<Cursor1 position="19522" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="cadastros.c" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="621" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="estilos.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="114" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="structs.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2337" topLine="61" />
-		</Cursor>
-	</File>
-	<File name="interface.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="58" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="pdv.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="44392" topLine="850" />
-		</Cursor>
-	</File>
-	<File name="funcoes.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11226" topLine="358" />
+			<Cursor1 position="213607" topLine="3384" />
 		</Cursor>
 	</File>
 	<File name="funcoes.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -42,9 +17,14 @@
 			<Cursor1 position="881" topLine="14" />
 		</Cursor>
 	</File>
-	<File name="pdv.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="352" topLine="0" />
+			<Cursor1 position="621" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="estilos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="26" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="cadastros.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,42 +32,34 @@
 			<Cursor1 position="314" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="cadastros.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="structs.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6969" topLine="93" />
+			<Cursor1 position="2337" topLine="40" />
 		</Cursor>
-		<Folding>
-			<Collapse line="117" />
-			<Collapse line="1751" />
-			<Collapse line="1789" />
-			<Collapse line="1829" />
-			<Collapse line="2281" />
-			<Collapse line="2363" />
-			<Collapse line="2408" />
-			<Collapse line="2446" />
-			<Collapse line="2526" />
-			<Collapse line="2567" />
-			<Collapse line="2647" />
-			<Collapse line="2688" />
-			<Collapse line="2768" />
-			<Collapse line="2809" />
-			<Collapse line="2878" />
-			<Collapse line="2889" />
-			<Collapse line="2923" />
-			<Collapse line="2934" />
-			<Collapse line="2973" />
-			<Collapse line="2984" />
-			<Collapse line="3028" />
-			<Collapse line="3039" />
-			<Collapse line="3099" />
-			<Collapse line="3223" />
-			<Collapse line="3237" />
-			<Collapse line="3312" />
-		</Folding>
 	</File>
-	<File name="estilos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="funcoes.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="26" topLine="0" />
+			<Cursor1 position="11226" topLine="358" />
+		</Cursor>
+	</File>
+	<File name="pdv.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="43045" topLine="841" />
+		</Cursor>
+	</File>
+	<File name="pdv.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="352" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="interface.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="58" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="estilos.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="114" topLine="27" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
