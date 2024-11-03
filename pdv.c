@@ -602,7 +602,7 @@ void RemoverItemCarrinho(Carrinho **carrinho){
     }
 }
 
-void SalvarCarrinho(Carrinho **carrinho) {
+void SalvarCarrinho(Carrinho **carrinho){
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
     WORD saved_attributes;
@@ -611,7 +611,7 @@ void SalvarCarrinho(Carrinho **carrinho) {
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     saved_attributes = consoleInfo.wAttributes;
 
-    if (*carrinho == NULL) {
+    if(*carrinho == NULL){
         bold(1);
         printf(RED "\n\n                                            [!] Carrinho vazio. Não há nada para salvar!\n\a");
         bold(0);
@@ -626,7 +626,7 @@ void SalvarCarrinho(Carrinho **carrinho) {
 
     // Abrir o arquivo para adicionar o carrinho
     FILE *arquivoCarrinho = fopen("dados\\vendas\\carrinhos_guardados.bin", "ab");
-    if (arquivoCarrinho == NULL) {
+    if(arquivoCarrinho == NULL){
         bold(1);
         printf(RED "\n\n                                            [!] Erro ao abrir o arquivo para salvar o carrinho!\n\a");
         bold(0);
@@ -638,7 +638,7 @@ void SalvarCarrinho(Carrinho **carrinho) {
 
     // Iterar sobre os itens do carrinho e salvá-los
     Carrinho *itemAtual = *carrinho; // Começa do início da lista
-    while (itemAtual != NULL) {
+    while(itemAtual != NULL){
         CarrinhoGuardado carrinhoGuardado;
         carrinhoGuardado.id = idCarrinho; // Atribui o ID do carrinho guardado
         carrinhoGuardado.item = itemAtual->item; // Salva o item atual
