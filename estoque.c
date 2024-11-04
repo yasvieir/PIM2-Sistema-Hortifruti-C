@@ -160,14 +160,11 @@ void MostrarEstoque(){
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n\n\t");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | BACKGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(" %-10s | %-50s | %-15s | %-18s", "ID:", "Produto:", "Quantidade:", "Valor (por kg):");
     SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf("\n\t");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf("------------|----------------------------------------------------|-----------------|-------------------"); // 119 caracteres
-    SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n");
+
     //Lê os dados do arquivo binário.
     while(fread(&produto, sizeof(produto), 1, arquivo) == 1){
         if(produto.ID != 0){ // Pula a impressão do usuário administrador.
@@ -268,7 +265,12 @@ system("title Buscar Produto");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      ");
             SetConsoleTextAttribute(hConsole, saved_attributes);
-            printf("\n\n");
+            printf("\n\n\t");
+
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | BACKGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf(" %-10s | %-50s | %-15s | %-18s", "ID:", "Produto:", "Quantidade:", "Valor (por kg):");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n");
             //Mostrando dados do cadastro.
             ListarEstoque(produto);
 
@@ -387,6 +389,10 @@ void EditarEstoque(Produto produto){
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
         printf(  "                                     [1] Adicionar | [2] Retirar | [3] CANCELAR                                       ");
         SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
+        printf(  "                                                                                                                      ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
         printf("\n                                                ");
         SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_RED | BACKGROUND_GREEN);
         printf(                                                   " Escolha uma opção: ");
@@ -402,6 +408,7 @@ void EditarEstoque(Produto produto){
 
         switch(opcao){
         case 1:
+            telaLimpa();
             printf("\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      ");
@@ -480,6 +487,7 @@ void EditarEstoque(Produto produto){
             }
             break;
         case 2:
+            telaLimpa();
             printf("\n ");
             SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
             printf(  "                                                                                                                      ");

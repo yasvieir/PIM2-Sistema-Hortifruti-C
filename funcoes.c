@@ -342,7 +342,7 @@ int salvarUltimoID_Carrinho(int ultimoID_Carrinho){
     FILE *arquivo;
 
     //Abre um arquivo binário (cria se não existir)
-    arquivo = fopen("dados\\vendas\\ultimo_id_vendas.bin", "wb");
+    arquivo = fopen("dados\\vendas\\ultimo_id_carrinho.bin", "wb");
     if(arquivo != NULL){
         // Escreve o último ID no arquivo
         fwrite(&ultimoID_Carrinho, sizeof(int), 1, arquivo);

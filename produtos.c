@@ -408,12 +408,8 @@ void ListarProdutos(){
     printf(  "                                                                                                                      \n");
     SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("\n\t");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | BACKGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_GREEN);
     printf(" %-10s | %-68s | %-18s", "ID:", "Nome:", "Valor (por kg):");
-    SetConsoleTextAttribute(hConsole, saved_attributes);
-    printf("\n\t");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
-    printf("------------|----------------------------------------------------------------------|-------------------"); // 119 caracteres
     SetConsoleTextAttribute(hConsole, saved_attributes);
 
     //Lê os dados do arquivo binário.
