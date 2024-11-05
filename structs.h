@@ -62,6 +62,14 @@ typedef struct item_carrinho {
     float quantidade; // Quantidade comprada
 } ItemCarrinho;
 
+#define TAM_tipoDesconto 20
+
+typedef struct desconto {
+    float valor; // Valor do desconto
+    char tipo[TAM_tipoDesconto]; // Tipo do desconto (ex: "Preço Errado", "Desconto do Gerente")
+    struct desconto *proximo; // Ponteiro para o próximo desconto
+} Desconto;
+
 // Estrutura para o carrinho de compras
 typedef struct dados_carrinho {
     int ID; // ID do carrinho
@@ -69,6 +77,7 @@ typedef struct dados_carrinho {
     struct dados_carrinho *proximo; // Ponteiro para o próximo item no carrinho
     int totalProdutos; // Total de produtos no carrinho
     float valor_total; // Valor total da compra
+    Desconto *descontos; // Ponteiro para a lista de descontos
 } Carrinho;
 
 typedef struct {

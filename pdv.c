@@ -332,6 +332,7 @@ void MontarCarrinho(){
                 break;
             case 3:
                 telaLimpa();
+                FinalizarCarrinho(&carrinho);
                 break;
             case 4:
                 telaLimpa();
@@ -599,6 +600,494 @@ void RemoverItemCarrinho(Carrinho **carrinho){
         }
         fclose(arquivoCarrinho); // Fecha o arquivo após a escrita
     }
+}
+
+void FinalizarCarrinho(Carrinho **carrinho){
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    if(*carrinho == NULL){
+        bold(1);
+        printf(RED "\n\n                                            [!] Carrinho vazio. Não há nada para finalizar!\n\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        return;
+    }
+
+    // Gerar um novo ID para a venda
+    int idVenda = gerarID_Venda();
+
+    // Abrir o arquivo para adicionar a venda
+    FILE *arquivoVenda = fopen("dados\\vendas\\vendas.bin", "ab");
+    if(arquivoVenda == NULL){
+        bold(1);
+        printf(RED "\n\n                                            [!] Erro ao abrir o arquivo para salvar a venda!\n\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        return;
+    }
+
+    // Iterar sobre os itens do carrinho e salvá-los
+    Carrinho *itemAtual = *carrinho; // Começa do início da lista
+    Venda venda;
+    venda.ID = idVenda; // Atribui o ID da venda
+    venda.proximo = NULL; // Inicializa o próximo como NULL
+    venda.valor_total = 0.0; // Inicializa o valor total da venda
+
+    while(itemAtual != NULL){
+        // Salva cada item na venda
+        venda.item = itemAtual->item; // Salva o item atual
+        fwrite(&venda, sizeof(Venda), 1, arquivoVenda); // Escreve no arquivo
+        venda.valor_total += itemAtual->item.produto.preco * itemAtual->item.quantidade; // Acumula o valor total
+        itemAtual = itemAtual->proximo; // Avança para o próximo item
+    }
+
+    // Salvar o valor total da venda
+    fseek(arquivoVenda, -sizeof(Venda), SEEK_CUR); // Volta para o início do último registro
+    fwrite(&venda, sizeof(Venda), 1, arquivoVenda); // Atualiza o valor total da venda
+    fclose(arquivoVenda);
+
+    // Atualiza o último ID de venda no arquivo
+    salvarUltimoID_Venda(idVenda); // Salva o último ID de venda
+
+    bold(1);
+    printf(GREEN "\n\n                                   [!] Carrinho finalizado com sucesso! ID da venda: %d\n\a\a", idVenda);
+    bold(0);
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    Sleep(800);
+    telaLimpa();
+
+    // Encerrar o carrinho
+    TelaVendaAtual(carrinho); // Passa o carrinho para a tela de venda atual
+    free(*carrinho); // Liberar a memória do carrinho
+    *carrinho = NULL; // Definir o ponteiro como NULL
+}
+
+void MostrarCarrinho(Carrinho **carrinho){
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    // Exibir os itens do carrinho
+    printf("\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | BACKGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_GREEN);
+    printf(" %-10s | %-50s | %-15s | %-18s", "Item:", "Produto:", "Quantidade:", "Valor:");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+
+    Carrinho *itemAtual = *carrinho; // Começa do início da lista
+    float valorTotal = 0.0; // Valor total sem descontos
+    float valorDescontos = 0.0; // Valor total dos descontos
+
+    while(itemAtual != NULL){
+        printf("\n\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        float valorItem = itemAtual->item.produto.preco * itemAtual->item.quantidade;
+        printf(" %-10i | %-50s | %-12.3f kg | R$ %-15.2f",
+               itemAtual->item.id, // ID do item no carrinho
+               itemAtual->item.produto.nome,
+               itemAtual->item.quantidade,
+               valorItem);
+        valorTotal += valorItem; // Acumula o valor total
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        itemAtual = itemAtual->proximo; // Avança para o próximo item
+    }
+    printf("\n");
+
+    // Exibir os descontos aplicados
+    Desconto *descontoAtual = (*carrinho)->descontos;
+    while(descontoAtual != NULL){
+        printf("\n\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(" %-10s | %-65s | R$ %-15.2f", "Desconto:", descontoAtual->tipo, descontoAtual->valor);
+        valorDescontos += descontoAtual->valor; // Acumula o valor dos descontos
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        descontoAtual = descontoAtual->proximo; // Avança para o próximo desconto
+    }
+
+    // Exibir o valor total do carrinho considerando os descontos
+    float valorTotalFinal = valorTotal - valorDescontos; // Calcula o total final
+    printf("\n\t");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_GREEN);
+    printf(" %-81s | R$ %-15.2f", "Total:", valorTotalFinal);
+    SetConsoleTextAttribute(hConsole, saved_attributes);
+    printf("\n");
+}
+
+void TelaVendaAtual(Carrinho **carrinho){
+
+    system("title Finalizar Venda");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    int escolha;
+
+    do{
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                    FINALIZAR VENDA                                                   \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n");
+
+        // Exibir os itens do carrinho
+        MostrarCarrinho(carrinho);
+
+        printf("\n"
+               "\n                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "               OPÇÕES               ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [1] - Metodo Pagamento          ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [2] - Aplicar Desconto          ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [3] - Finalizar Venda           ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [4] - Cancelar Venda            ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           " Escolha uma opção para continuar: ");
+
+        scanf("%i", &escolha);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        switch(escolha){
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default :
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+        }
+
+    }while(escolha != 4);
+    telaLimpa();
+}
+
+void AplicarDesconto(Carrinho **carrinho){
+
+    system("title Aplicar Desconto");
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
+
+    // Salvar estado atual
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+
+    if(*carrinho == NULL){
+        bold(1);
+        printf(RED "\n\n                                            [!] Carrinho vazio. Não há nada para aplicar desconto!\n\a");
+        bold(0);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        Sleep(800);
+        return;
+    }
+
+    int tipoDesconto;
+    float valorDesconto;
+
+    do{
+        printf("\n ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                    APLICAR DESCONTO                                                  \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(" ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf("                                                                                                                      \n");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf("\n");
+
+        Desconto *descontoAtual = (*carrinho)->descontos;
+        float totalDescontos = 0.0;
+
+        while (descontoAtual != NULL) {
+            printf("\n\t");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+            printf(" %-10s | %-65s | R$ %-15.2f", "Desconto:", descontoAtual->tipo, descontoAtual->valor);
+            totalDescontos += descontoAtual->valor; // Acumula o valor dos descontos
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            descontoAtual = descontoAtual->proximo; // Avança para o próximo desconto
+        }
+
+        // Calcular e exibir o valor total do carrinho
+        float valorTotalCarrinho = (*carrinho)->valor_total; // Valor total original do carrinho
+        float valorTotalFinal = valorTotalCarrinho - totalDescontos; // Calcula o total final
+
+        printf("\n\t");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_GREEN);
+        printf(" %-81s | R$ %-15.2f", "Valor total do carrinho:", valorTotalCarrinho);
+        printf("\n\t");
+        printf(" %-81s | R$ %-15.2f", "Valor total após descontos:", valorTotalFinal);
+
+        printf("\n"
+               "\n                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "               OPÇÕES               ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [0] - Voltar                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [1] - Preço Errado              ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [2] - Desconto do Gerente       ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "    [3] - Cancelar                  ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_INTENSITY);
+        printf(                                           "                                    ");
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+        printf(                                                                                "                                        \n"
+                 "                                        ");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+        printf(                                           " Escolha uma opção para continuar: ");
+
+        scanf("%i", &tipoDesconto);
+        fflush(stdin);
+        SetConsoleTextAttribute(hConsole, saved_attributes);
+
+        switch(tipoDesconto){
+        case 0:
+            telaLimpa();
+            TelaVendaAtual(carrinho);
+            break;
+        case 1:
+            telaLimpa();
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                                                                                      \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                    APLICAR DESCONTO                                                  \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                                                                                      \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n");
+
+            // Solicitar ao usuário o ID do item a ser removido
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("\n\tDigite o valor do desconto: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" R$ ");
+            scanf("%f", &valorDesconto);
+            fflush(stdin);
+
+            // Verificar se o valor do desconto é válido
+            if (valorDesconto < 0) {
+                bold(1);
+                printf(RED "\n\n                                            [!] Valor do desconto inválido!\n\a");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                return;
+            }
+
+            // Atualiza o valor total do carrinho
+            (*carrinho)->valor_total -= valorDesconto;
+
+            // Criar um novo desconto
+            Desconto *novoDesconto1 = (Desconto *)malloc(sizeof(Desconto));
+            novoDesconto1->valor = valorDesconto;
+            strcpy(novoDesconto1->tipo, "Preço Errado");
+            novoDesconto1->proximo = (*carrinho)->descontos; // Adiciona no início da lista
+            (*carrinho)->descontos = novoDesconto1; // Atualiza o ponteiro do carrinho
+
+            // Exibir confirmação
+            bold(1);
+            printf(GREEN "\n\n                                        [!] Desconto de Preço Errado aplicado com sucesso!\n\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            TelaVendaAtual(carrinho);
+            break;
+        case 2:
+            telaLimpa();
+            printf("\n ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                                                                                      \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                    APLICAR DESCONTO                                                  \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" ");
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("                                                                                                                      \n");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf("\n");
+
+            // Solicitar ao usuário o ID do item a ser removido
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN);
+            printf("\n\tDigite o valor do desconto: ");
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            printf(" R$ ");
+            scanf("%f", &valorDesconto);
+            fflush(stdin);
+
+            // Verificar se o valor do desconto é válido
+            if (valorDesconto < 0) {
+                bold(1);
+                printf(RED "\n\n                                            [!] Valor do desconto inválido!\n\a");
+                bold(0);
+                SetConsoleTextAttribute(hConsole, saved_attributes);
+                Sleep(800);
+                return;
+            }
+
+            // Atualiza o valor total do carrinho
+            (*carrinho)->valor_total -= valorDesconto;
+
+            // Criar um novo desconto
+            Desconto *novoDesconto2 = (Desconto *)malloc(sizeof(Desconto));
+            novoDesconto2->valor = valorDesconto;
+            strcpy(novoDesconto2->tipo, "Desconto do Gerente");
+            novoDesconto2->proximo = (*carrinho)->descontos; // Adiciona no início da lista
+            (*carrinho)->descontos = novoDesconto2; // Atualiza o ponteiro do carrinho
+
+            // Exibir confirmação
+            bold(1);
+            printf(GREEN "\n\n                                        [!] Desconto do Gerente aplicado com sucesso!\n\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+
+            telaLimpa();
+            TelaVendaAtual(carrinho);
+            break;
+        case 4:
+            // Cancelar todos os descontos
+            while ((*carrinho)->descontos != NULL) {
+                Desconto *temp = (*carrinho)->descontos;
+                (*carrinho)->descontos = (*carrinho)->descontos->proximo; // Avança para o próximo desconto
+                free(temp); // Libera a memória do desconto
+            }
+            // Restaura o valor total do carrinho
+            (*carrinho)->valor_total += totalDescontos; // Adiciona todos os descontos de volta ao total
+            bold(1);
+            printf(GREEN "\n\n                                        [!] Todos os descontos foram cancelados com sucesso!\n\a");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+            telaLimpa();
+            TelaVendaAtual(carrinho);
+            break;
+        default :
+            bold(1);
+            printf(RED "\n\n\t\t\t\t\t\t [!] Opção Inválida!");
+            bold(0);
+            SetConsoleTextAttribute(hConsole, saved_attributes);
+            Sleep(800);
+        }
+
+    }while(tipoDesconto != 0);
+    telaLimpa();
 }
 
 void SalvarCarrinho(Carrinho **carrinho) {
